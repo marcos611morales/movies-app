@@ -1,8 +1,9 @@
-import { Text, useWindowDimensions, View } from 'react-native';
-import { Movie } from '../../infrastructure/interfaces/movie.interface';
+import { useWindowDimensions, View } from 'react-native';
+import { Movie } from '../../../infrastructure/interfaces/movie.interface';
 
 import { useRef } from 'react';
 import { Carousel, type CarouselRef } from "react-native-reanimated-carousel";
+import MoviePoster from './MoviePoster';
 
 
 interface Props {
@@ -19,7 +20,7 @@ const MainSlideShow = ({movies} : Props) => {
 			<Carousel
 				ref={ref}
 				data={movies}
-				renderItem={({ item }) => <Text>{item.title}</Text>}
+				renderItem={({ item }) => <MoviePoster id={item.id} poster={item.poster}/>}
 				itemSize={200}
 				style={{
 					width: width,
