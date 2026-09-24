@@ -7,6 +7,7 @@ import {
 	QueryClientProvider
 } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const RootLayout = () => {
 
@@ -14,13 +15,15 @@ const RootLayout = () => {
 	// Create a client
 	const queryClient = new QueryClient()
 	return (
-		<QueryClientProvider client={queryClient}>
-			<Stack
-				screenOptions={{
-					headerShown: false,
-				}}
-			/>
-		</QueryClientProvider>
+		<GestureHandlerRootView style={{ flex: 1 }}>
+			<QueryClientProvider client={queryClient}>
+				<Stack
+					screenOptions={{
+						headerShown: false,
+					}}
+				/>
+			</QueryClientProvider>
+		</GestureHandlerRootView>
 	)
 }
 
