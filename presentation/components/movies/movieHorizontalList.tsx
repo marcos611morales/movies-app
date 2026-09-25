@@ -16,12 +16,19 @@ const MovieHorizontalList = ({title, movies, className}: Props) => {
 			{title && <Text className='text-3xl font-bold px-4 mb-2'>{title}</Text>}
 
 			<FlatList
-			className='px-0'
 				horizontal
 				data={movies}
 				keyExtractor={(item) => `${item.id}`}
 				showsHorizontalScrollIndicator = {false}
-				renderItem={({item}) => <MoviePoster id={item.id} poster={item.poster} smallPoster/>}
+				contentContainerClassName='px-0'
+				renderItem={({item, index}) => (
+					<MoviePoster 
+						id={item.id} 
+						poster={item.poster} 
+						smallPoster
+						clasName={index === 0 ? 'pl-1' : ''}
+					/>
+				)}
 			/>
 		</View>
 	)
