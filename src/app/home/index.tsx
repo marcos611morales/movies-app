@@ -8,6 +8,13 @@ const HomeScreen = () => {
 	const safeArea = useSafeAreaInsets();
 	const {nowPlayingQuery, popularQuery, topRatedQuery, upcomingQuery} = useMovies();
 
+	// // TMDB puede repetir películas entre páginas; se eliminan duplicados por id
+	// const topRatedMovies = [
+	// 	...new Map(
+	// 		(topRatedQuery.data?.pages.flat() ?? []).map((movie) => [movie.id, movie])
+	// 	).values(),
+	// ];
+
 	if(nowPlayingQuery.isLoading) {
 		return (
 			<View className='justify-center items-center flex-1'>
@@ -35,8 +42,10 @@ const HomeScreen = () => {
 			{/* Top Rater */}
 			<MovieHorizontalList 
 				title='Mejor calificadas' 
-				movies={topRatedQuery.data ?? []}
+				// movies={topRatedMovies}
+				movies={topRatedQuery.data?.pages.flat() ?? []}
 				className='mb-5'
+				loadNextPage={ topRatedQuery.fetchNextPage}
 			/>
 
 			{/* Upcoming */}
