@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
 import { getMovieByIdAction } from '../../core/actions/movie/get-movie-by-id.action';
 
 export const useMovie = (id: number) => {
