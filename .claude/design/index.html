@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Movies App · Diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&amp;family=Instrument+Sans:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0E0D0C; --surface: #181614; --border: #2E2A26; --text: #F4EFE8; --text2: #B3ABA1; --primary: #F5B841; --onPrimary: #1A1305; }
+  body.light { --bg: #FAF7F2; --surface: #FFFFFF; --border: #E4DDD2; --text: #1A1714; --text2: #5C554D; --primary: #F2AE2E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Instrument Sans', system-ui, sans-serif; }
+  header { padding: 40px 24px 24px; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  h1 { margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 36px; letter-spacing: -0.02em; }
+  p { margin: 0; color: var(--text2); line-height: 1.5; max-width: 720px; }
+  .tabs { display: flex; gap: 8px; margin-top: 8px; }
+  .tabs button { height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }
+  .tabs button[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--onPrimary); }
+  main { padding: 0 24px 64px; max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+  figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  figcaption { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; font-weight: 600; }
+  figcaption a { color: var(--text2); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; }
+  .frame { width: 293px; overflow: hidden; border-radius: 20px; border: 1px solid var(--border); }
+  .frame iframe { width: 390px; border: 0; display: block; transform: scale(0.75); transform-origin: 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Movies App · Diseño</h1>
+  <p>Pantallas de referencia de la app, hechas en Claude Design con la paleta “Marquesina”. Los datos son de ejemplo y los pósters son marcadores (<code>poster_path</code>). Las pantallas son interactivas: chips, pestañas, favoritos y navegación entre pantallas.</p>
+  <div class="tabs">
+    <button type="button" data-theme="dark" aria-pressed="true">Tema oscuro</button>
+    <button type="button" data-theme="light" aria-pressed="false">Tema claro</button>
+  </div>
+</header>
+<main id="grid"></main>
+<script>
+  const SCREENS = [
+    ['Main', 'Bienvenida', 844], ['LoginForm', 'Login', 844], ['Home', 'Inicio', 2000],
+    ['Search', 'Buscar', 1060], ['Explore', 'Explorar', 1180], ['MovieDetail', 'Detalle de película', 2080],
+    ['RateSheet', 'Calificar', 844], ['TvDetail', 'Detalle de serie', 1960], ['Season', 'Temporada', 1400],
+    ['Person', 'Persona', 1520], ['Profile', 'Perfil', 1200], ['ProfileGuest', 'Perfil invitado', 1080]
+  ];
+  const grid = document.getElementById('grid');
+  const buttons = document.querySelectorAll('.tabs button');
+
+  function show(theme) {
+    const suffix = theme === 'light' ? 'Light' : '';
+    document.body.classList.toggle('light', theme === 'light');
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.theme === theme)));
+    grid.innerHTML = SCREENS.map(([file, name, h]) => {
+      const src = 'screens/' + file + suffix + '.html';
+      return '<figure><figcaption>' + name + '<a href="' + src + '">abrir</a></figcaption>' +
+        '<div class="frame" style="height:' + h * 0.75 + 'px"><iframe title="' + name + '" src="' + src + '" style="height:' + h + 'px" loading="lazy"></iframe></div></figure>';
+    }).join('');
+  }
+
+  buttons.forEach((b) => b.addEventListener('click', () => show(b.dataset.theme)));
+  show('dark');
+</script>
+</body>
+</html>

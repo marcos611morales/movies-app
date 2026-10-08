@@ -1,0 +1,285 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-08T22:07:22Z"
+ },
+ "title": "Marquesina — Pantallas App TMDB",
+ "launch": {
+  "view": "canvas",
+  "page": "oscuro"
+ },
+ "pages": [
+  {
+   "id": "oscuro",
+   "name": "Tema oscuro"
+  },
+  {
+   "id": "claro",
+   "name": "Tema claro"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 300,
+   "w": 390,
+   "h": 844,
+   "title": "Bienvenida · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "LoginForm.dc.html": {
+   "x": 470,
+   "y": 300,
+   "w": 390,
+   "h": 844,
+   "title": "Login usuario y contraseña · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "Home.dc.html": {
+   "x": 940,
+   "y": 300,
+   "w": 390,
+   "h": 2000,
+   "title": "Inicio · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "Search.dc.html": {
+   "x": 1410,
+   "y": 300,
+   "w": 390,
+   "h": 1060,
+   "title": "Buscar · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "Explore.dc.html": {
+   "x": 1880,
+   "y": 300,
+   "w": 390,
+   "h": 1180,
+   "title": "Explorar · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "MovieDetail.dc.html": {
+   "x": 2350,
+   "y": 300,
+   "w": 390,
+   "h": 2080,
+   "title": "Detalle de película · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "RateSheet.dc.html": {
+   "x": 2820,
+   "y": 300,
+   "w": 390,
+   "h": 844,
+   "title": "Calificar · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "TvDetail.dc.html": {
+   "x": 3290,
+   "y": 300,
+   "w": 390,
+   "h": 1960,
+   "title": "Detalle de serie · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "Season.dc.html": {
+   "x": 3760,
+   "y": 300,
+   "w": 390,
+   "h": 1400,
+   "title": "Temporada · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "Person.dc.html": {
+   "x": 4230,
+   "y": 300,
+   "w": 390,
+   "h": 1520,
+   "title": "Persona · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "Profile.dc.html": {
+   "x": 4700,
+   "y": 300,
+   "w": 390,
+   "h": 1200,
+   "title": "Perfil · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "ProfileGuest.dc.html": {
+   "x": 5170,
+   "y": 300,
+   "w": 390,
+   "h": 1080,
+   "title": "Perfil invitado · oscuro",
+   "page": "oscuro",
+   "is_interactive": true
+  },
+  "MainLight.dc.html": {
+   "x": 0,
+   "y": 300,
+   "w": 390,
+   "h": 844,
+   "title": "Bienvenida · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "LoginFormLight.dc.html": {
+   "x": 470,
+   "y": 300,
+   "w": 390,
+   "h": 844,
+   "title": "Login usuario y contraseña · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "HomeLight.dc.html": {
+   "x": 940,
+   "y": 300,
+   "w": 390,
+   "h": 2000,
+   "title": "Inicio · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "SearchLight.dc.html": {
+   "x": 1410,
+   "y": 300,
+   "w": 390,
+   "h": 1060,
+   "title": "Buscar · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "ExploreLight.dc.html": {
+   "x": 1880,
+   "y": 300,
+   "w": 390,
+   "h": 1180,
+   "title": "Explorar · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "MovieDetailLight.dc.html": {
+   "x": 2350,
+   "y": 300,
+   "w": 390,
+   "h": 2080,
+   "title": "Detalle de película · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "RateSheetLight.dc.html": {
+   "x": 2820,
+   "y": 300,
+   "w": 390,
+   "h": 844,
+   "title": "Calificar · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "TvDetailLight.dc.html": {
+   "x": 3290,
+   "y": 300,
+   "w": 390,
+   "h": 1960,
+   "title": "Detalle de serie · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "SeasonLight.dc.html": {
+   "x": 3760,
+   "y": 300,
+   "w": 390,
+   "h": 1400,
+   "title": "Temporada · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "PersonLight.dc.html": {
+   "x": 4230,
+   "y": 300,
+   "w": 390,
+   "h": 1520,
+   "title": "Persona · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "ProfileLight.dc.html": {
+   "x": 4700,
+   "y": 300,
+   "w": 390,
+   "h": 1200,
+   "title": "Perfil · claro",
+   "page": "claro",
+   "is_interactive": true
+  },
+  "ProfileGuestLight.dc.html": {
+   "x": 5170,
+   "y": 300,
+   "w": 390,
+   "h": 1080,
+   "title": "Perfil invitado · claro",
+   "page": "claro",
+   "is_interactive": true
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "LoginForm.dc.html",
+  "Home.dc.html",
+  "Search.dc.html",
+  "Explore.dc.html",
+  "MovieDetail.dc.html",
+  "RateSheet.dc.html",
+  "TvDetail.dc.html",
+  "Season.dc.html",
+  "Person.dc.html",
+  "Profile.dc.html",
+  "ProfileGuest.dc.html",
+  "MainLight.dc.html",
+  "LoginFormLight.dc.html",
+  "HomeLight.dc.html",
+  "SearchLight.dc.html",
+  "ExploreLight.dc.html",
+  "MovieDetailLight.dc.html",
+  "RateSheetLight.dc.html",
+  "TvDetailLight.dc.html",
+  "SeasonLight.dc.html",
+  "PersonLight.dc.html",
+  "ProfileLight.dc.html",
+  "ProfileGuestLight.dc.html"
+ ],
+ "notes": {
+  "t_dark": {
+   "x": 0,
+   "y": 0,
+   "text": "Marquesina · tema oscuro",
+   "kind": "title1",
+   "maxW": 5560,
+   "page": "oscuro"
+  },
+  "t_light": {
+   "x": 0,
+   "y": 0,
+   "text": "Marquesina · tema claro",
+   "kind": "title1",
+   "maxW": 5560,
+   "page": "claro"
+  }
+ },
+ "designSystems": []
+}

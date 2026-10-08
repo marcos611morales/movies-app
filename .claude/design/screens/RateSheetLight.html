@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Calificar · claro</title>
+<script src="./viewer.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="{{ vars }}">
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: repeating-linear-gradient(135deg, var(--surface) 0 10px, var(--elev) 10px 20px); color: var(--text); font-family: 'Instrument Sans', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.55)"></div>
+
+  <div role="dialog" aria-modal="true" aria-labelledby="rate-title" style="position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 24px 40px; border-radius: 28px 28px 0 0; background: var(--bg); border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 24px">
+    <span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 999px; background: var(--border)"></span>
+
+    <div style="display: flex; gap: 14px; align-items: center">
+      <div style="flex: 0 0 48px; height: 72px; border-radius: 10px; border: 1px solid var(--border); background: repeating-linear-gradient(135deg, var(--surface) 0 6px, var(--elev) 6px 12px)"></div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 4px">
+        <h2 id="rate-title" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">¿Qué te pareció?</h2>
+        <span style="font-size: 14px; color: var(--text2)">Noche en Lisboa · 2025</span>
+      </div>
+      <a href="{{ l.back }}" aria-label="Cerrar" style="width: 44px; height: 44px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text2); display: flex; align-items: center; justify-content: center; text-decoration: none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </a>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; gap: 24px">
+      <button type="button" aria-label="Bajar medio punto" onClick="{{ dec }}" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-size: 24px; cursor: pointer">−</button>
+      <div style="width: 120px; height: 120px; border-radius: 999px; border: 5px solid {{ color }}; display: flex; flex-direction: column; align-items: center; justify-content: center">
+        <span style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 36px; color: {{ color }}">{{ value }}</span>
+        <span style="font-size: 12px; color: var(--muted)">de 10</span>
+      </div>
+      <button type="button" aria-label="Subir medio punto" onClick="{{ inc }}" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; font-size: 24px; cursor: pointer">+</button>
+    </div>
+
+    <div role="radiogroup" aria-label="Calificación del 1 al 10" style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px">
+      <sc-for list="{{ stars }}" as="s" hint-placeholder-count="10">
+        <button type="button" role="radio" aria-checked="{{ s.on }}" aria-label="{{ s.label }}" onClick="{{ s.pick }}" style="height: 44px; border: 0; padding: 0; background: transparent; color: {{ s.color }}; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="{{ s.fill }}" stroke="currentColor" style="stroke-width: 1.6; stroke-linejoin: round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>
+        </button>
+      </sc-for>
+    </div>
+
+    <p style="margin: 0; text-align: center; font-size: 13px; color: var(--muted)">Se guarda en tu cuenta de TMDB. Puedes cambiarla cuando quieras.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <a href="{{ l.back }}" style="display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 999px; background: var(--primary); color: var(--onPrimary); font-weight: 600; font-size: 16px; text-decoration: none">Guardar calificación</a>
+      <a href="{{ l.back }}" style="display: flex; align-items: center; justify-content: center; height: 44px; color: var(--error); font-weight: 600; font-size: 15px; text-decoration: none">Quitar mi calificación</a>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+const PAL = {
+  dark: { bg:'#0E0D0C', surface:'#181614', elev:'#221F1C', border:'#2E2A26', overlay:'rgba(14,13,12,0.72)', text:'#F4EFE8', text2:'#B3ABA1', muted:'#857C72', primary:'#F5B841', pressed:'#D99A22', onPrimary:'#1A1305', primaryText:'#F5B841', accent:'#E5484D', success:'#46C47E', warning:'#F5B841', error:'#E5484D', hi:'#46C47E', mid:'#F5B841', lo:'#E5484D' },
+  light: { bg:'#FAF7F2', surface:'#FFFFFF', elev:'#F2EDE5', border:'#E4DDD2', overlay:'rgba(255,255,255,0.85)', text:'#1A1714', text2:'#5C554D', muted:'#766E64', primary:'#F2AE2E', pressed:'#D99A22', onPrimary:'#1A1305', primaryText:'#8A5A00', accent:'#C9363C', success:'#1F8A50', warning:'#9A6500', error:'#C9363C', hi:'#1F8A50', mid:'#9A6500', lo:'#C9363C' }
+};
+const rc = (v) => (v >= 7 ? 'var(--hi)' : v >= 5 ? 'var(--mid)' : 'var(--lo)');
+class Component extends DCLogic {
+  state = { value: 8 };
+  renderVals() {
+    const t = this.props.theme === 'light' ? 'light' : 'dark';
+    const vars = {};
+    Object.keys(PAL[t]).forEach((k) => { vars['--' + k] = PAL[t][k]; });
+    const s = t === 'light' ? 'Light' : '';
+    const v = this.state.value;
+    const set = (n) => this.setState({ value: Math.min(10, Math.max(0.5, n)) });
+    return {
+      vars,
+      value: v.toFixed(1),
+      color: rc(v),
+      dec: () => set(v - 0.5),
+      inc: () => set(v + 0.5),
+      stars: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => ({
+        on: Math.ceil(v) === n, label: n + ' de 10',
+        color: n <= Math.ceil(v) ? rc(v) : 'var(--border)',
+        fill: n <= v ? 'currentColor' : 'none',
+        pick: () => set(n)
+      })),
+      l: { back: 'MovieDetail' + s + '.html' }
+    };
+  }
+}
+</script>
+</body>
+</html>

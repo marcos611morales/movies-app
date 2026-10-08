@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Persona · claro</title>
+<script src="./viewer.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="{{ vars }}">
+<div style="width: 390px; min-height: 1520px; box-sizing: border-box; padding: 52px 0 48px; background: var(--bg); color: var(--text); font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; gap: 26px">
+  <div style="padding: 0 16px">
+    <a href="{{ l.back }}" aria-label="Volver" style="width: 44px; height: 44px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text); display: flex; align-items: center; justify-content: center; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round" aria-hidden="true"><path d="M15 5 8 12l7 7"></path></svg>
+    </a>
+  </div>
+
+  <div style="padding: 0 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+    <div style="width: 148px; height: 148px; border-radius: 999px; border: 3px solid var(--primary); background: repeating-linear-gradient(135deg, var(--surface) 0 8px, var(--elev) 8px 16px); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted)">profile_path</div>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.01em">Lucía Andrade</h1>
+    <span style="padding: 4px 12px; border-radius: 999px; background: var(--elev); font-size: 13px; font-weight: 600; color: var(--text2)">Actuación</span>
+  </div>
+
+  <div style="padding: 0 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 12px; color: var(--muted)">Nacimiento</span>
+      <span style="font-size: 15px; font-weight: 600">12 may 1988</span>
+    </div>
+    <div style="padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 12px; color: var(--muted)">Lugar</span>
+      <span style="font-size: 15px; font-weight: 600">[place_of_birth]</span>
+    </div>
+  </div>
+
+  <section style="padding: 0 24px; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Biografía</h2>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--text2)">[biography — texto de la biografía que regresa TMDB. Se muestran las primeras líneas y el resto se despliega al tocar “Leer más”.]</p>
+    <button type="button" style="align-self: flex-start; height: 44px; padding: 0; border: 0; background: transparent; color: var(--primaryText); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Leer más</button>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 12px">
+    <h2 style="margin: 0; padding: 0 24px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Conocida por</h2>
+    <div style="display: flex; gap: 12px; padding: 0 24px; overflow: hidden">
+      <sc-for list="{{ known }}" as="m" hint-placeholder-count="4">
+        <a href="{{ m.href }}" style="flex: 0 0 112px; display: flex; flex-direction: column; gap: 6px; color: var(--text); text-decoration: none">
+          <div style="position: relative; height: 168px; border-radius: 14px; border: 1px solid var(--border); background: repeating-linear-gradient(135deg, var(--surface) 0 8px, var(--elev) 8px 16px)">
+            <span style="position: absolute; top: 8px; left: 8px; padding: 3px 7px; border-radius: 8px; background: var(--overlay); color: {{ m.color }}; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500">★ {{ m.vote }}</span>
+          </div>
+          <span style="font-size: 13px; font-weight: 600">{{ m.title }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding: 0 24px; display: flex; flex-direction: column; gap: 12px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Filmografía</h2>
+    <div role="tablist" style="display: flex; gap: 8px">
+      <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="3">
+        <button role="tab" aria-selected="{{ tb.on }}" onClick="{{ tb.pick }}" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: {{ tb.bg }}; color: {{ tb.fg }}; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{ tb.label }}</button>
+      </sc-for>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+      <sc-for list="{{ credits }}" as="c" hint-placeholder-count="6">
+        <li>
+          <a href="{{ c.href }}" style="display: flex; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--text); text-decoration: none">
+            <span style="flex: 0 0 40px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted)">{{ c.year }}</span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 15px; font-weight: 600">{{ c.title }}</span>
+              <span style="font-size: 13px; color: var(--text2)">{{ c.role }}</span>
+            </span>
+          </a>
+        </li>
+      </sc-for>
+    </ul>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"$preview":{"width":390,"height":1520}}'>
+const PAL = {
+  dark: { bg:'#0E0D0C', surface:'#181614', elev:'#221F1C', border:'#2E2A26', overlay:'rgba(14,13,12,0.72)', text:'#F4EFE8', text2:'#B3ABA1', muted:'#857C72', primary:'#F5B841', pressed:'#D99A22', onPrimary:'#1A1305', primaryText:'#F5B841', accent:'#E5484D', success:'#46C47E', warning:'#F5B841', error:'#E5484D', hi:'#46C47E', mid:'#F5B841', lo:'#E5484D' },
+  light: { bg:'#FAF7F2', surface:'#FFFFFF', elev:'#F2EDE5', border:'#E4DDD2', overlay:'rgba(255,255,255,0.85)', text:'#1A1714', text2:'#5C554D', muted:'#766E64', primary:'#F2AE2E', pressed:'#D99A22', onPrimary:'#1A1305', primaryText:'#8A5A00', accent:'#C9363C', success:'#1F8A50', warning:'#9A6500', error:'#C9363C', hi:'#1F8A50', mid:'#9A6500', lo:'#C9363C' }
+};
+const rc = (v) => (v >= 7 ? 'var(--hi)' : v >= 5 ? 'var(--mid)' : 'var(--lo)');
+const CREDITS = [
+  ['movie', '2025', 'Noche en Lisboa', 'Inés'], ['tv', '2024', 'Distrito Norte', 'Nora · 18 episodios'], ['movie', '2025', 'Marea alta', 'Sara'],
+  ['movie', '2023', 'Los días de ámbar', 'Elena'], ['tv', '2021', 'Los herederos', 'Valeria · 8 episodios'], ['movie', '2019', 'Tren a Lisboa', 'Pasajera']
+];
+class Component extends DCLogic {
+  state = { tab: 'all' };
+  renderVals() {
+    const t = this.props.theme === 'light' ? 'light' : 'dark';
+    const vars = {};
+    Object.keys(PAL[t]).forEach((k) => { vars['--' + k] = PAL[t][k]; });
+    const s = t === 'light' ? 'Light' : '';
+    const tab = this.state.tab;
+    const HREF = { movie: 'MovieDetail' + s + '.html', tv: 'TvDetail' + s + '.html' };
+    return {
+      vars,
+      known: [['Noche en Lisboa', 8.4, 'movie'], ['Distrito Norte', 8.1, 'tv'], ['Marea alta', 7.2, 'movie'], ['Los días de ámbar', 4.6, 'movie']].map(([title, v, k]) => ({ title, vote: v.toFixed(1), color: rc(v), href: HREF[k] })),
+      tabs: [['all', 'Todo'], ['movie', 'Películas'], ['tv', 'Series']].map(([id, label]) => ({ label, on: id === tab, bg: id === tab ? 'var(--primary)' : 'var(--elev)', fg: id === tab ? 'var(--onPrimary)' : 'var(--text2)', pick: () => this.setState({ tab: id }) })),
+      credits: CREDITS.filter(([k]) => tab === 'all' || k === tab).sort((a, b) => b[1] - a[1]).map(([k, year, title, role]) => ({ year, title, role, href: HREF[k] })),
+      l: { back: 'MovieDetail' + s + '.html' }
+    };
+  }
+}
+</script>
+</body>
+</html>

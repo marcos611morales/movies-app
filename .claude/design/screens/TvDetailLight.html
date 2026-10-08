@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Detalle de serie · claro</title>
+<script src="./viewer.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="{{ vars }}">
+<div style="width: 390px; min-height: 1960px; box-sizing: border-box; padding-bottom: 48px; background: var(--bg); color: var(--text); font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; gap: 28px">
+
+  <div style="position: relative; height: 270px; background: repeating-linear-gradient(135deg, var(--surface) 0 10px, var(--elev) 10px 20px)">
+    <span style="position: absolute; top: 120px; left: 0; right: 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted)">backdrop_path</span>
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 140px; background: linear-gradient(to bottom, transparent, var(--bg))"></div>
+    <div style="position: absolute; top: 52px; left: 16px; right: 16px; display: flex; justify-content: space-between">
+      <a href="{{ l.home }}" aria-label="Volver" style="width: 44px; height: 44px; border-radius: 999px; background: var(--overlay); color: var(--text); display: flex; align-items: center; justify-content: center; text-decoration: none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round; stroke-linejoin: round" aria-hidden="true"><path d="M15 5 8 12l7 7"></path></svg>
+      </a>
+      <button type="button" aria-label="Compartir" style="width: 44px; height: 44px; border-radius: 999px; border: 0; background: var(--overlay); color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v6h14v-6"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <div style="margin-top: -110px; position: relative; padding: 0 24px; display: flex; gap: 16px; align-items: flex-end">
+    <div style="flex: 0 0 112px; height: 168px; border-radius: 14px; border: 1px solid var(--border); background: repeating-linear-gradient(135deg, var(--surface) 0 8px, var(--elev) 8px 16px); display: flex; align-items: center; justify-content: center">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted)">poster_path</span>
+    </div>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding-bottom: 4px">
+      <span style="align-self: flex-start; padding: 2px 8px; border-radius: 6px; background: var(--elev); color: var(--text2); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase">Serie</span>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.08; letter-spacing: -0.01em">Distrito Norte</h1>
+      <span style="font-size: 13px; color: var(--text2)">2022 – actualidad · 4 temporadas</span>
+      <span style="font-size: 13px; color: var(--text2)">Creada por [creador]</span>
+    </div>
+  </div>
+
+  <div style="padding: 0 24px; display: flex; align-items: center; gap: 14px">
+    <div style="width: 56px; height: 56px; border-radius: 999px; border: 3px solid var(--hi); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 16px; color: var(--hi)">8.1</div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 13px; color: var(--text2)">Calificación de usuarios · 1,872 votos</span>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap">
+        <span style="padding: 4px 10px; border-radius: 999px; background: var(--elev); font-size: 12px; font-weight: 600; color: var(--text2)">Crimen</span>
+        <span style="padding: 4px 10px; border-radius: 999px; background: var(--elev); font-size: 12px; font-weight: 600; color: var(--text2)">Drama</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 0 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+    <button type="button" aria-pressed="{{ fav }}" onClick="{{ toggleFav }}" style="height: 72px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); color: {{ favColor }}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="{{ favFill }}" stroke="currentColor" style="stroke-width: 1.8; stroke-linejoin: round" aria-hidden="true"><path d="M12 20s-7-4.4-9-9.2C1.7 7.4 4 4 7.3 4c2 0 3.4 1.1 4.7 2.8C13.3 5.1 14.7 4 16.7 4 20 4 22.3 7.4 21 10.8 19 15.6 12 20 12 20z"></path></svg>
+      Favorito
+    </button>
+    <button type="button" aria-pressed="{{ watch }}" onClick="{{ toggleWatch }}" style="height: 72px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); color: {{ watchColor }}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="{{ watchFill }}" stroke="currentColor" style="stroke-width: 1.8; stroke-linejoin: round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>
+      Por ver
+    </button>
+    <a href="{{ l.rate }}" style="height: 72px; box-sizing: border-box; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); color: var(--text2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 600; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.8; stroke-linejoin: round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>
+      Calificar
+    </a>
+    <button type="button" style="height: 72px; border-radius: 16px; border: 0; background: var(--primary); color: var(--onPrimary); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"></path></svg>
+      Tráiler
+    </button>
+  </div>
+
+  <section style="padding: 0 24px">
+    <a href="{{ l.season }}" style="display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 18px; background: var(--surface); border: 1px solid var(--primary); color: var(--text); text-decoration: none">
+      <div style="flex: 0 0 104px; height: 60px; border-radius: 10px; border: 1px solid var(--border); background: repeating-linear-gradient(135deg, var(--surface) 0 6px, var(--elev) 6px 12px); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted)">still_path</div>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primaryText)">Próximo episodio</span>
+        <span style="font-size: 15px; font-weight: 600">T4 · E6 — Luz de frontera</span>
+        <span style="font-size: 13px; color: var(--text2)">Viernes 17 oct</span>
+      </div>
+    </a>
+  </section>
+
+  <section style="padding: 0 24px; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Sinopsis</h2>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--text2)">[overview — texto de la sinopsis de la serie que regresa TMDB en el idioma configurado.]</p>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 12px">
+    <div style="padding: 0 24px; display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Temporadas</h2>
+      <span style="font-size: 13px; color: var(--muted)">38 episodios</span>
+    </div>
+    <div style="display: flex; gap: 12px; padding: 0 24px; overflow: hidden">
+      <sc-for list="{{ seasons }}" as="s" hint-placeholder-count="4">
+        <a href="{{ s.href }}" style="flex: 0 0 112px; display: flex; flex-direction: column; gap: 6px; color: var(--text); text-decoration: none">
+          <div style="height: 168px; border-radius: 14px; border: 1px solid var(--border); background: repeating-linear-gradient(135deg, var(--surface) 0 8px, var(--elev) 8px 16px)"></div>
+          <span style="font-size: 14px; font-weight: 600">{{ s.name }}</span>
+          <span style="font-size: 12px; color: var(--text2); margin-top: -2px">{{ s.meta }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding: 0 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
+      <div style="padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 12px; color: var(--muted)">{{ f.k }}</span>
+        <span style="font-size: 15px; font-weight: 600">{{ f.v }}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="padding: 0 24px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Dónde ver</h2>
+      <span style="font-size: 12px; color: var(--muted)">Datos de JustWatch</span>
+    </div>
+    <div style="display: flex; gap: 12px">
+      <sc-for list="{{ providers }}" as="p" hint-placeholder-count="3">
+        <div style="width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--border); background: var(--elev); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted)">logo_path</div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 12px">
+    <div style="padding: 0 24px; display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px">Reparto</h2>
+      <a href="{{ l.person }}" style="font-size: 14px; font-weight: 600; color: var(--primaryText); text-decoration: none">Ver todo</a>
+    </div>
+    <div style="display: flex; gap: 12px; padding: 0 24px; overflow: hidden">
+      <sc-for list="{{ cast }}" as="c" hint-placeholder-count="4">
+        <a href="{{ c.href }}" style="flex: 0 0 96px; display: flex; flex-direction: column; gap: 6px; color: var(--text); text-decoration: none">
+          <div style="height: 128px; border-radius: 14px; border: 1px solid var(--border); background: repeating-linear-gradient(135deg, var(--surface) 0 6px, var(--elev) 6px 12px); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted)">profile_path</div>
+          <span style="font-size: 13px; font-weight: 600; line-height: 1.25">{{ c.name }}</span>
+          <span style="font-size: 12px; color: var(--text2); margin-top: -2px">{{ c.role }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"light"},"$preview":{"width":390,"height":1960}}'>
+const PAL = {
+  dark: { bg:'#0E0D0C', surface:'#181614', elev:'#221F1C', border:'#2E2A26', overlay:'rgba(14,13,12,0.72)', text:'#F4EFE8', text2:'#B3ABA1', muted:'#857C72', primary:'#F5B841', pressed:'#D99A22', onPrimary:'#1A1305', primaryText:'#F5B841', accent:'#E5484D', success:'#46C47E', warning:'#F5B841', error:'#E5484D', hi:'#46C47E', mid:'#F5B841', lo:'#E5484D' },
+  light: { bg:'#FAF7F2', surface:'#FFFFFF', elev:'#F2EDE5', border:'#E4DDD2', overlay:'rgba(255,255,255,0.85)', text:'#1A1714', text2:'#5C554D', muted:'#766E64', primary:'#F2AE2E', pressed:'#D99A22', onPrimary:'#1A1305', primaryText:'#8A5A00', accent:'#C9363C', success:'#1F8A50', warning:'#9A6500', error:'#C9363C', hi:'#1F8A50', mid:'#9A6500', lo:'#C9363C' }
+};
+class Component extends DCLogic {
+  state = { fav: false, watch: true };
+  renderVals() {
+    const t = this.props.theme === 'light' ? 'light' : 'dark';
+    const vars = {};
+    Object.keys(PAL[t]).forEach((k) => { vars['--' + k] = PAL[t][k]; });
+    const s = t === 'light' ? 'Light' : '';
+    const { fav, watch } = this.state;
+    const person = 'Person' + s + '.html';
+    const season = 'Season' + s + '.html';
+    return {
+      vars,
+      fav, watch,
+      favColor: fav ? 'var(--accent)' : 'var(--text2)', favFill: fav ? 'currentColor' : 'none',
+      watchColor: watch ? 'var(--primaryText)' : 'var(--text2)', watchFill: watch ? 'currentColor' : 'none',
+      toggleFav: () => this.setState({ fav: !fav }),
+      toggleWatch: () => this.setState({ watch: !watch }),
+      seasons: [['Temporada 1', '2022 · 10 ep.'], ['Temporada 2', '2023 · 10 ep.'], ['Temporada 3', '2024 · 10 ep.'], ['Temporada 4', '2025 · 8 ep.']].map(([name, meta]) => ({ name, meta, href: season })),
+      facts: [['Cadena', '[network]'], ['Estado', 'En emisión'], ['Duración por episodio', '52 min'], ['Idioma original', 'Español']].map(([k, v]) => ({ k, v })),
+      providers: [1, 2, 3].map((i) => ({ i })),
+      cast: [['Clara Soto', 'Agente Ríos'], ['Iván Peralta', 'Fabián'], ['Lucía Andrade', 'Nora'], ['Mateo Ruiz', 'El Güero']].map(([name, role]) => ({ name, role, href: person })),
+      l: { home: 'Home' + s + '.html', rate: 'RateSheet' + s + '.html', person, season }
+    };
+  }
+}
+</script>
+</body>
+</html>
