@@ -1,56 +1,80 @@
-# Welcome to your Expo app 👋
+# Movies App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A movies and TV shows mobile app built with React Native and Expo, powered by [The Movie Database (TMDB)](https://www.themoviedb.org/) API. It's a practice project: I'm building it by hand, phase by phase, to learn the Expo ecosystem.
 
-## Get started
+> 🚧 **Work in progress.**
 
-1. Install dependencies
+## Features
+
+What the app will include once the plan is complete:
+
+- **Home**: now playing, popular, top rated and upcoming movies and TV shows.
+- **Movie and TV show details**: overview, cast, trailer, where to watch, recommendations and seasons.
+- **People**: biography and filmography.
+- **Search**: movies, TV shows and people in a single search.
+- **Explore**: discover titles by genre.
+- **TMDB account**: sign in, favorites, watchlist, ratings and custom lists.
+- **Guest mode**: browse and rate without an account.
+- **Light and dark themes**.
+
+## Design
+
+The reference screens live in [`.claude/design/`](.claude/design/): 12 screens in dark and light themes, made in Claude Design with the "Marquesina" palette. Open [`.claude/design/index.html`](.claude/design/index.html) in your browser to see the full gallery. More details in its [README](.claude/design/README.md).
+
+## Tech stack
+
+- [Expo](https://expo.dev) SDK 57 · React Native 0.86 · React 19 · TypeScript
+- [Expo Router](https://docs.expo.dev/router/introduction/) (file-based routing)
+- [NativeWind](https://www.nativewind.dev/) 4 + Tailwind CSS 3
+- [TanStack Query](https://tanstack.com/query) 5 + axios
+- expo-image, expo-linear-gradient, expo-web-browser, react-native-reanimated-carousel, Ionicons
+
+## Getting started
+
+Requirements: Node.js, [pnpm](https://pnpm.io/), and an iOS simulator, an Android emulator or a device with a development build.
+
+1. Install dependencies:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
-2. Start the app
+2. Create your `.env` file from the template and add your TMDB API key (get one at [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api)):
 
    ```bash
-   npx expo start
+   cp .env.template .env
    ```
 
-In the output, you'll find options to open the app in a
+3. Start the app:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   pnpm start      # or: pnpm ios / pnpm android / pnpm web
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Other commands
 
 ```bash
-npm run reset-project
+pnpm lint           # ESLint (expo lint)
+npx tsc --noEmit    # type check
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Project structure
 
-### Other setup steps
+The code is being migrated to a feature-based architecture:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```
+src/
+  app/        # expo-router routes
+  features/   # auth, movies, tv, people, search, discover, account
+  shared/     # TMDB client, theme, base components, hooks and utilities
+```
 
-## Learn more
+Data flows **action → mapper → hook → component**.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Attribution
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+This product uses the TMDB API but is not endorsed or certified by TMDB. Streaming availability data is provided by [JustWatch](https://www.justwatch.com/).
 
-## Join the community
+## License
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+[MIT](LICENSE) © 2026 Marcos Morales
