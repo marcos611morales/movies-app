@@ -2,19 +2,19 @@ import { MovieDBMoviesResponse } from "../../../infrastructure/interfaces/movide
 import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper";
 import { movieApi } from "../../api/movie-api";
 
+export const popularMoviesAction = async () => {
+  try {
+    const { data } =
+      await movieApi.get<MovieDBMoviesResponse>("/movie/popular");
+    // console.log(JSON.stringify(data, null, 2));
 
-export const popularMoviesAction = async() => {
-	try {
-		const { data } = await movieApi.get<MovieDBMoviesResponse>('/popular')
-		// console.log(JSON.stringify(data, null, 2));
+    const movies = data.results.map(MovieMapper.fromTheMovieDBToMovie);
 
-		const movies = data.results.map(MovieMapper.fromTheMovieDBToMovie);
-		
-		// console.log(movies)
+    // console.log(movies)
 
-		return movies;
-	} catch (error) {
-		console.log(error);
-		throw 'Cannot load popular movies'
-	}
-}
+    return movies;
+  } catch (error) {
+    console.log(error);
+    throw "Cannot load popular movies";
+  }
+};

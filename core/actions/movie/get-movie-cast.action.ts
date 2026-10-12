@@ -5,7 +5,7 @@ import { movieApi } from "../../api/movie-api";
 export const getMovieCastAction = async (movieId: number) => {
   try {
     const { data } = await movieApi.get<MovieDBCreditsResponse>(
-      `/${movieId}/credits`,
+      `/movie/${movieId}/credits`,
     );
 
     return data.cast.map(CastMapper.fromMovieDBCastToEntity);
