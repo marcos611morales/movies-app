@@ -10,10 +10,9 @@ export const getMovieByIdAction = async (
     const { data } = await movieApi.get<MovieDBMovieResponse>(`/movie/${id}`);
     // console.log(JSON.stringify(data, null, 2));
 
-    console.log("Pelicula - HTTP cargada");
     return MovieMapper.fromTheMovieDBToCompleteMovie(data);
   } catch (error) {
     console.log(error);
-    throw "Cannot load now playing movies";
+    throw `Cannot load movie with id ${id}`;
   }
 };
