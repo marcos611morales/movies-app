@@ -1,11 +1,13 @@
+import MainSlideShow from "@/features/movies/components/MainSlideShow";
 import MovieHorizontalList from "@/features/movies/components/MovieHorizontalList";
+import { useMovies } from "@/features/movies/hooks/useMovies";
+import { useThemeColors } from "@/shared/theme/useThemeColors";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import MainSlideShow from "@/features/movies/components/MainSlideShow";
-import { useMovies } from "@/features/movies/hooks/useMovies";
 
 const HomeScreen = () => {
   const safeArea = useSafeAreaInsets();
+  const colors = useThemeColors();
   const { nowPlayingQuery, popularQuery, topRatedQuery, upcomingQuery } =
     useMovies();
 
@@ -19,7 +21,7 @@ const HomeScreen = () => {
   if (nowPlayingQuery.isLoading) {
     return (
       <View className="justify-center items-center flex-1">
-        <ActivityIndicator color="purple" size={40} />
+        <ActivityIndicator color={colors.primary} size={40} />
       </View>
     );
   }

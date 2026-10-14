@@ -1,3 +1,4 @@
+import { useThemeColors } from "@/shared/theme/useThemeColors";
 import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -18,6 +19,7 @@ interface Props {
 
 const MovieHeader = ({ poster, originalTitle, title }: Props) => {
   const { height: screenHeight } = useWindowDimensions();
+  const colors = useThemeColors();
 
   return (
     <>
@@ -65,8 +67,12 @@ const MovieHeader = ({ poster, originalTitle, title }: Props) => {
               className="flex-1"
             />
           ) : (
-            <View className="flex-1 bg-gray-200 items-center justify-center">
-              <Ionicons name="film-outline" size={64} color="#9CA3AF" />
+            <View className="flex-1 bg-surface-elevated items-center justify-center">
+              <Ionicons
+                name="film-outline"
+                size={64}
+                color={colors.textMuted}
+              />
             </View>
           )}
         </View>

@@ -1,3 +1,4 @@
+import { useThemeColors } from "@/shared/theme/useThemeColors";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { router } from "expo-router";
 import { Image, Pressable, View } from "react-native";
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const MoviePoster = ({ id, poster, smallPoster = false, clasName }: Props) => {
+  const colors = useThemeColors();
   return (
     <Pressable
       className={`active:opacity-90 px-2 ${clasName}`}
@@ -27,7 +29,7 @@ const MoviePoster = ({ id, poster, smallPoster = false, clasName }: Props) => {
         />
       ) : (
         <View
-          className="rounded-2xl bg-gray-200 items-center justify-center"
+          className="rounded-2xl bg-surface-elevated items-center justify-center"
           style={{
             width: smallPoster ? 85 : 150,
             height: smallPoster ? 130 : 250,
@@ -36,7 +38,7 @@ const MoviePoster = ({ id, poster, smallPoster = false, clasName }: Props) => {
           <Ionicons
             name="film-outline"
             size={smallPoster ? 28 : 48}
-            color="#9CA3AF"
+            color={colors.textMuted}
           />
         </View>
       )}

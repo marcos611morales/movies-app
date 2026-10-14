@@ -1,4 +1,5 @@
 import { Cast } from "@/features/movies/types/cast";
+import { useThemeColors } from "@/shared/theme/useThemeColors";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { Image, Text, View } from "react-native";
 
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export const ActorCard = ({ actor }: Props) => {
+  const colors = useThemeColors();
+
   return (
     <View className="mx-10 w-[60px]">
       {actor.avatar ? (
@@ -16,8 +19,8 @@ export const ActorCard = ({ actor }: Props) => {
           resizeMode="cover"
         />
       ) : (
-        <View className="w-[100px] h-[150px] rounded-2xl bg-gray-200 items-center justify-center">
-          <Ionicons name="person-outline" size={40} color="#9CA3AF" />
+        <View className="w-[100px] h-[150px] rounded-2xl bg-surface-elevated items-center justify-center">
+          <Ionicons name="person-outline" size={40} color={colors.textMuted} />
         </View>
       )}
 
