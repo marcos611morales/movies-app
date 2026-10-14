@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Backgrounds */
+    --background: 250 247 242;
+    --surface: 255 255 255;
+    --surface-elevated: 242 237 229;
+    --border: 228 221 210;
+    --overlay: rgba(255, 255, 255, 0.85);
+
+    /* Text */
+    --text: 26 23 20;
+    --text-secondary: 92 85 77;
+    --text-muted: 118 110 100;
+
+    /* Primary */
+    --primary: 242 174 46;
+    --primary-pressed: 217 154 34;
+    --on-primary: 26 19 5;
+    --primary-text: 138 90 0;
+
+    /* Accent */
+    --accent: 201 54 60;
+
+    /* Status */
+    --success: 31 138 80;
+    --warning: 154 101 0;
+    --error: 201 54 60;
+
+    /* Ratings */
+    --rating-high: 31 138 80;
+    --rating-mid: 154 101 0;
+    --rating-low: 201 54 60;
+  }
+
+  .dark:root {
+    /* Backgrounds */
+    --background: 14 13 12;
+    --surface: 24 22 20;
+    --surface-elevated: 34 31 28;
+    --border: 46 42 38;
+    --overlay: rgba(14, 13, 12, 0.72);
+
+    /* Text */
+    --text: 244 239 232;
+    --text-secondary: 179 171 161;
+    --text-muted: 133 124 114;
+
+    /* Primary */
+    --primary: 245 184 65;
+    --primary-pressed: 217 154 34;
+    --on-primary: 26 19 5;
+    --primary-text: 245 184 65;
+
+    /* Accent */
+    --accent: 229 72 77;
+
+    /* Status */
+    --success: 70 196 126;
+    --warning: 245 184 65;
+    --error: 229 72 77;
+
+    /* Ratings */
+    --rating-high: 70 196 126;
+    --rating-mid: 245 184 65;
+    --rating-low: 229 72 77;
+  }
+}
