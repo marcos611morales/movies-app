@@ -1,6 +1,6 @@
+import { Cast } from "@/features/movies/types/cast";
+import { MovieDBCast } from "@/features/movies/types/moviedb-creditsResponse";
 import { ImageFormatter } from "@/shared/api/image";
-import { Cast } from "../interfaces/cast";
-import { MovieDBCast } from "../interfaces/moviedb-creditsResponse";
 
 export class CastMapper {
   static fromMovieDBCastToEntity(actor: MovieDBCast): Cast {

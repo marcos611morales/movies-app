@@ -1,6 +1,6 @@
+import { CastMapper } from "@/features/movies/mappers/cast.mapper";
+import { MovieDBCreditsResponse } from "@/features/movies/types/moviedb-creditsResponse";
 import { tmdbClient } from "@/shared/api/tmdb-client";
-import { MovieDBCreditsResponse } from "../../../infrastructure/interfaces/moviedb-creditsResponse";
-import { CastMapper } from "../../../infrastructure/mappers/cast.mapper";
 
 export const getMovieCastAction = async (movieId: number) => {
   try {

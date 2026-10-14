@@ -1,7 +1,7 @@
+import { MovieMapper } from "@/features/movies/mappers/movie.mapper";
+import { CompleteMovie } from "@/features/movies/types/movie.interface";
+import { MovieDBMovieResponse } from "@/features/movies/types/moviedb-movie.response";
 import { tmdbClient } from "@/shared/api/tmdb-client";
-import { CompleteMovie } from "../../../infrastructure/interfaces/movie.interface";
-import { MovieDBMovieResponse } from "../../../infrastructure/interfaces/moviedb-movie.response";
-import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper";
 
 export const getMovieByIdAction = async (
   id: number | string,

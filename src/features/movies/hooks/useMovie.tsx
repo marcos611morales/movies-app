@@ -1,6 +1,6 @@
+import { getMovieByIdAction } from "@/features/movies/api/get-movie-by-id.action";
+import { getMovieCastAction } from "@/features/movies/api/get-movie-cast.action";
 import { useQuery } from "@tanstack/react-query";
-import { getMovieByIdAction } from "../../core/actions/movie/get-movie-by-id.action";
-import { getMovieCastAction } from "../../core/actions/movie/get-movie-cast.action";
 
 export const useMovie = (id: number) => {
   const movieQuery = useQuery({

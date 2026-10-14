@@ -1,6 +1,6 @@
+import { Cast } from "@/features/movies/types/cast";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { Image, Text, View } from "react-native";
-import { Cast } from "../../../infrastructure/interfaces/cast";
 
 interface Props {
   actor: Cast;

@@ -1,7 +1,7 @@
+import { ActorCard } from "@/features/movies/components/ActorCard";
+import { Cast } from "@/features/movies/types/cast";
 import { Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { Cast } from "../../../infrastructure/interfaces/cast";
-import { ActorCard } from "./ActorCard";
 
 interface Props {
   cast: Cast[];

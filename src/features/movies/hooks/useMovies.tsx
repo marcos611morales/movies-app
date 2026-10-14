@@ -1,8 +1,8 @@
+import { nowPlayingAction } from "@/features/movies/api/now-playing.action";
+import { popularMoviesAction } from "@/features/movies/api/popular.action";
+import { topRatedMoviesAction } from "@/features/movies/api/top-rated.action";
+import { upcomingMoviesAction } from "@/features/movies/api/upcoming.action";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { nowPlayingAction } from "../../core/actions/movies/now-playing.actions";
-import { popularMoviesAction } from "../../core/actions/movies/popular.action";
-import { topRatedMoviesAction } from "../../core/actions/movies/top-Rated.action";
-import { upcomingMoviesAction } from "../../core/actions/movies/upcoming.action";
 
 export const useMovies = () => {
   // Queries

@@ -1,6 +1,6 @@
+import { CompleteMovie } from "@/features/movies/types/movie.interface";
 import { Formatter } from "@/shared/utils/formatter";
 import { Text, View } from "react-native";
-import { CompleteMovie } from "../../../infrastructure/interfaces/movie.interface";
 
 interface Props {
   movie: CompleteMovie;

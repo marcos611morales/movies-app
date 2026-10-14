@@ -1,9 +1,9 @@
+import MovieCast from "@/features/movies/components/MovieCast";
+import MovieDescription from "@/features/movies/components/MovieDescription";
+import MovieHeader from "@/features/movies/components/MovieHeader";
+import { useMovie } from "@/features/movies/hooks/useMovie";
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
-import MovieCast from "../../../presentation/components/movie/MovieCast";
-import MovieDescription from "../../../presentation/components/movie/MovieDescription";
-import MovieHeader from "../../../presentation/components/movie/MovieHeader";
-import { useMovie } from "../../../presentation/hooks/useMovie";
 
 const MovieScreen = () => {
   const { id } = useLocalSearchParams();

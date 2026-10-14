@@ -1,6 +1,6 @@
+import { MovieMapper } from "@/features/movies/mappers/movie.mapper";
+import { MovieDBMoviesResponse } from "@/features/movies/types/movidedb-response";
 import { tmdbClient } from "@/shared/api/tmdb-client";
-import { MovieDBMoviesResponse } from "../../../infrastructure/interfaces/movidedb-response";
-import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper";
 
 export const upcomingMoviesAction = async () => {
   try {

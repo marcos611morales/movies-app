@@ -1,8 +1,8 @@
+import { Result } from "@/features/movies/types/movidedb-response";
+import { CompleteMovie, Movie } from "@/features/movies/types/movie.interface";
+import { MovieDBMovieResponse } from "@/features/movies/types/moviedb-movie.response";
 import { ImageFormatter } from "@/shared/api/image";
 import { DateFormatter } from "@/shared/utils/date";
-import { Result } from "../interfaces/movidedb-response";
-import { CompleteMovie, Movie } from "../interfaces/movie.interface";
-import { MovieDBMovieResponse } from "../interfaces/moviedb-movie.response";
 
 export class MovieMapper {
   static fromTheMovieDBToMovie = (movie: Result): Movie => {

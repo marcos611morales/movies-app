@@ -1,9 +1,9 @@
+import { Movie } from "@/features/movies/types/movie.interface";
 import { useWindowDimensions, View } from "react-native";
-import { Movie } from "../../../infrastructure/interfaces/movie.interface";
 
+import MoviePoster from "@/features/movies/components/MoviePoster";
 import { useRef } from "react";
 import { Carousel, type CarouselRef } from "react-native-reanimated-carousel";
-import MoviePoster from "./MoviePoster";
 
 interface Props {
   movies: Movie[];
