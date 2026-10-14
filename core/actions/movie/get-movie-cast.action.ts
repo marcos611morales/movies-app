@@ -1,10 +1,10 @@
+import { tmdbClient } from "@/shared/api/tmdb-client";
 import { MovieDBCreditsResponse } from "../../../infrastructure/interfaces/moviedb-creditsResponse";
 import { CastMapper } from "../../../infrastructure/mappers/cast.mapper";
-import { movieApi } from "../../api/movie-api";
 
 export const getMovieCastAction = async (movieId: number) => {
   try {
-    const { data } = await movieApi.get<MovieDBCreditsResponse>(
+    const { data } = await tmdbClient.get<MovieDBCreditsResponse>(
       `/movie/${movieId}/credits`,
     );
 

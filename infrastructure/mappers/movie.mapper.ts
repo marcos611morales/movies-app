@@ -1,5 +1,5 @@
-import { DateFormatter } from "../../config/helpers/date";
-import { ImageFormatter } from "../../config/helpers/image";
+import { ImageFormatter } from "@/shared/api/image";
+import { DateFormatter } from "@/shared/utils/date";
 import { Result } from "../interfaces/movidedb-response";
 import { CompleteMovie, Movie } from "../interfaces/movie.interface";
 import { MovieDBMovieResponse } from "../interfaces/moviedb-movie.response";

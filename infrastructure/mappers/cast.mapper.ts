@@ -1,4 +1,4 @@
-import { ImageFormatter } from "../../config/helpers/image";
+import { ImageFormatter } from "@/shared/api/image";
 import { Cast } from "../interfaces/cast";
 import { MovieDBCast } from "../interfaces/moviedb-creditsResponse";
 

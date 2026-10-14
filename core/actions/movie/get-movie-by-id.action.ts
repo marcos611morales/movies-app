@@ -1,13 +1,13 @@
+import { tmdbClient } from "@/shared/api/tmdb-client";
 import { CompleteMovie } from "../../../infrastructure/interfaces/movie.interface";
 import { MovieDBMovieResponse } from "../../../infrastructure/interfaces/moviedb-movie.response";
 import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper";
-import { movieApi } from "../../api/movie-api";
 
 export const getMovieByIdAction = async (
   id: number | string,
 ): Promise<CompleteMovie> => {
   try {
-    const { data } = await movieApi.get<MovieDBMovieResponse>(`/movie/${id}`);
+    const { data } = await tmdbClient.get<MovieDBMovieResponse>(`/movie/${id}`);
     // console.log(JSON.stringify(data, null, 2));
 
     return MovieMapper.fromTheMovieDBToCompleteMovie(data);

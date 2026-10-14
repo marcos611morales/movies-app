@@ -1,5 +1,5 @@
+import { Formatter } from "@/shared/utils/formatter";
 import { Text, View } from "react-native";
-import { Formatter } from "../../../config/helpers/formatter";
 import { CompleteMovie } from "../../../infrastructure/interfaces/movie.interface";
 
 interface Props {

@@ -1,6 +1,6 @@
+import { tmdbClient } from "@/shared/api/tmdb-client";
 import { MovieDBMoviesResponse } from "../../../infrastructure/interfaces/movidedb-response";
 import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper";
-import { movieApi } from "../../api/movie-api";
 
 interface Options {
   page?: number;
@@ -12,7 +12,7 @@ export const topRatedMoviesAction = async ({
   limit = 10,
 }: Options) => {
   try {
-    const { data } = await movieApi.get<MovieDBMoviesResponse>(
+    const { data } = await tmdbClient.get<MovieDBMoviesResponse>(
       "/movie/top_rated",
       {
         params: {

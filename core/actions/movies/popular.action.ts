@@ -1,11 +1,11 @@
+import { tmdbClient } from "@/shared/api/tmdb-client";
 import { MovieDBMoviesResponse } from "../../../infrastructure/interfaces/movidedb-response";
 import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper";
-import { movieApi } from "../../api/movie-api";
 
 export const popularMoviesAction = async () => {
   try {
     const { data } =
-      await movieApi.get<MovieDBMoviesResponse>("/movie/popular");
+      await tmdbClient.get<MovieDBMoviesResponse>("/movie/popular");
     // console.log(JSON.stringify(data, null, 2));
 
     const movies = data.results.map(MovieMapper.fromTheMovieDBToMovie);
