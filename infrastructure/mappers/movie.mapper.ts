@@ -1,4 +1,5 @@
 import { DateFormatter } from "../../config/helpers/date";
+import { ImageFormatter } from "../../config/helpers/image";
 import { Result } from "../interfaces/movidedb-response";
 import { CompleteMovie, Movie } from "../interfaces/movie.interface";
 import { MovieDBMovieResponse } from "../interfaces/moviedb-movie.response";
@@ -10,8 +11,8 @@ export class MovieMapper {
       title: movie.title,
       description: movie.overview,
       releaseDate: DateFormatter.parseTmdbDate(movie.release_date),
-      poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      backdrop: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
+      poster: ImageFormatter.urlImage(movie.poster_path),
+      backdrop: ImageFormatter.urlImage(movie.backdrop_path),
       rating: movie.vote_average,
     };
   };

@@ -1,3 +1,4 @@
+import Ionicons from "@react-native-vector-icons/ionicons";
 import { Image, Text, View } from "react-native";
 import { Cast } from "../../../infrastructure/interfaces/cast";
 
@@ -8,11 +9,17 @@ interface Props {
 export const ActorCard = ({ actor }: Props) => {
   return (
     <View className="mx-10 w-[60px]">
-      <Image
-        source={{ uri: actor.avatar }}
-        className="w-[100px] h-[150] rounded-2xl shadow"
-        resizeMode="cover"
-      />
+      {actor.avatar ? (
+        <Image
+          source={{ uri: actor.avatar }}
+          className="w-[100px] h-[150px] rounded-2xl shadow"
+          resizeMode="cover"
+        />
+      ) : (
+        <View className="w-[100px] h-[150px] rounded-2xl bg-gray-200 items-center justify-center">
+          <Ionicons name="person-outline" size={40} color="#9CA3AF" />
+        </View>
+      )}
 
       <View>
         <Text

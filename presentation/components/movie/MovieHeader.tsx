@@ -3,15 +3,15 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 
 import {
-	Image,
-	Pressable,
-	Text,
-	useWindowDimensions,
-	View,
+  Image,
+  Pressable,
+  Text,
+  useWindowDimensions,
+  View,
 } from "react-native";
 
 interface Props {
-  poster: string;
+  poster: string | null;
   originalTitle: string;
   title: string;
 }
@@ -58,11 +58,17 @@ const MovieHeader = ({ poster, originalTitle, title }: Props) => {
         className="shadow-xl shadow-black/20"
       >
         <View className="flex-1 rounded-b-[25px] overflow-hidden">
-          <Image
-            source={{ uri: poster }}
-            resizeMode="cover"
-            className="flex-1"
-          />
+          {poster ? (
+            <Image
+              source={{ uri: poster }}
+              resizeMode="cover"
+              className="flex-1"
+            />
+          ) : (
+            <View className="flex-1 bg-gray-200 items-center justify-center">
+              <Ionicons name="film-outline" size={64} color="#9CA3AF" />
+            </View>
+          )}
         </View>
       </View>
 

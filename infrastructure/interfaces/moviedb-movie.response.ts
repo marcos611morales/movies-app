@@ -1,6 +1,6 @@
 export interface MovieDBMovieResponse {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   belongs_to_collection: null;
   budget: number;
   genres: Genre[];
@@ -12,7 +12,7 @@ export interface MovieDBMovieResponse {
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
+  poster_path: string | null;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
   release_date: string;

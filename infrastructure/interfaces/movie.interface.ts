@@ -4,8 +4,8 @@ export interface Movie {
   description: string;
   releaseDate: Date | null;
   rating: number;
-  poster: string;
-  backdrop: string;
+  poster: string | null;
+  backdrop: string | null;
 }
 
 export interface CompleteMovie extends Movie {
