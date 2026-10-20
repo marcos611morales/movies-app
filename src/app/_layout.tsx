@@ -32,6 +32,8 @@ SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
   const preference = useThemeStore((s) => s.preference);
+  const hasHydrated = useThemeStore((s) => s.hasHydrated);
+
   const { colorScheme: activeColorScheme } = useColorScheme();
   const colors = useThemeColors();
 
@@ -45,15 +47,17 @@ const RootLayout = () => {
     JetBrainsMono_500Medium,
   });
 
+  const ready = (loaded || !!error) && hasHydrated;
+
   useEffect(() => {
     colorScheme.set(preference);
   }, [preference]);
 
   useEffect(() => {
-    if (loaded || error) SplashScreen.hideAsync();
-  }, [loaded, error]);
+    if (ready) SplashScreen.hide();
+  }, [ready]);
 
-  if (!loaded && !error) return null;
+  if (!ready) return null;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

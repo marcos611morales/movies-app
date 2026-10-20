@@ -6,6 +6,7 @@ export type ThemePreference = "system" | "light" | "dark";
 
 interface ThemeState {
   preference: ThemePreference;
+  hasHydrated: boolean;
   setPreference: (preference: ThemePreference) => void;
 }
 
@@ -13,7 +14,7 @@ export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
       preference: "system",
-
+      hasHydrated: false,
       setPreference: (preference) => {
         set({ preference });
       },
@@ -21,6 +22,14 @@ export const useThemeStore = create<ThemeState>()(
     {
       name: "theme-preference",
       storage: createJSONStorage(() => AsyncStorage),
+
+      partialize: (state) => ({
+        preference: state.preference,
+      }),
+
+      onRehydrateStorage: () => () => {
+        useThemeStore.setState({ hasHydrated: true });
+      },
     },
   ),
 );
