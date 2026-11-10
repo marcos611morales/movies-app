@@ -4,6 +4,7 @@ import { useMovies } from "@/features/movies/hooks/useMovies";
 import { AppText } from "@/shared/components/AppText";
 import { Screen } from "@/shared/components/Screen";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
+import { Link } from "expo-router";
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -34,6 +35,12 @@ const HomeScreen = () => {
         <AppText variant="display" className="px-4 mb-2">
           Movies App
         </AppText>
+
+        {__DEV__ && (
+          <Link href="/dev/ui" className="px-4 py-3 text-primary">
+            Ver componentes UI
+          </Link>
+        )}
 
         {/* Carrusel de imágenes */}
         <MainSlideShow movies={nowPlayingQuery.data ?? []} />
