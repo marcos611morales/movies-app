@@ -4,6 +4,8 @@ import { Chip } from "@/shared/components/Chip";
 import { IconButton } from "@/shared/components/IconButton";
 import { Screen } from "@/shared/components/Screen";
 import { SegmentedTabs } from "@/shared/components/SegmentedTabs";
+import { TmdbImage } from "@/shared/components/TmdbImage";
+import { useThemeStore, type ThemePreference } from "@/shared/theme/theme-store";
 import { cn } from "@/shared/utils/cn";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
@@ -44,6 +46,12 @@ const profileTabs: { value: ProfileTab; label: string }[] = [
   { value: "lists", label: "Listas" },
 ];
 
+const themeOptions: { value: ThemePreference; label: string }[] = [
+  { value: "system", label: "Sistema" },
+  { value: "light", label: "Claro" },
+  { value: "dark", label: "Oscuro" },
+];
+
 export default function DevUIScreen() {
   const [pressCount, setPressCount] = useState(0);
   const handlePress = () => setPressCount((count) => count + 1);
@@ -52,11 +60,22 @@ export default function DevUIScreen() {
   const [selectedChip, setSelectedChip] = useState("Todo");
   const [selectedGenre, setSelectedGenre] = useState("Todo");
   const [profileTab, setProfileTab] = useState<ProfileTab>("fav");
+  const themePreference = useThemeStore((state) => state.preference);
+  const setThemePreference = useThemeStore((state) => state.setPreference);
 
   return (
     <Screen>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 48 }}>
         <AppText variant="display">Componentes UI</AppText>
+
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Tema</AppText>
+          <SegmentedTabs<ThemePreference>
+            options={themeOptions}
+            value={themePreference}
+            onChange={setThemePreference}
+          />
+        </View>
 
         <View className="mt-6 gap-4">
           <AppText variant="title">Tipografía</AppText>
@@ -181,6 +200,45 @@ export default function DevUIScreen() {
           <AppText variant="caption" accessibilityLiveRegion="polite">
             Selección: {profileTabs.find((tab) => tab.value === profileTab)?.label}
           </AppText>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Imágenes TMDB</AppText>
+          <View className="flex-row flex-wrap gap-4">
+            <View className="gap-2">
+              <TmdbImage
+                path="/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+                size="w342"
+                className="w-[124px] aspect-[2/3] rounded-[14px] border border-border"
+                accessibilityLabel="Póster de The Dark Knight"
+              />
+              <AppText variant="caption">The Dark Knight</AppText>
+            </View>
+            <View className="gap-2">
+              <TmdbImage
+                path={null}
+                size="w342"
+                className="w-[124px] aspect-[2/3] rounded-[14px] border border-border"
+              />
+              <AppText variant="caption">Sin imagen</AppText>
+            </View>
+            <View className="gap-2">
+              <TmdbImage
+                path="/no-existe.jpg"
+                size="w342"
+                className="w-[124px] aspect-[2/3] rounded-[14px] border border-border"
+              />
+              <AppText variant="caption">Error de carga</AppText>
+            </View>
+            <View className="gap-2">
+              <TmdbImage
+                path={null}
+                size="w185"
+                fallbackIcon="person-outline"
+                className="rounded-full w-16 h-16"
+              />
+              <AppText variant="caption">Persona sin foto</AppText>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </Screen>
