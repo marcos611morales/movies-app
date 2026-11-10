@@ -1,8 +1,10 @@
 import MainSlideShow from "@/features/movies/components/MainSlideShow";
 import MovieHorizontalList from "@/features/movies/components/MovieHorizontalList";
 import { useMovies } from "@/features/movies/hooks/useMovies";
+import { AppText } from "@/shared/components/AppText";
+import { Screen } from "@/shared/components/Screen";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
@@ -20,16 +22,18 @@ const HomeScreen = () => {
 
   if (nowPlayingQuery.isLoading) {
     return (
-      <View className="justify-center items-center flex-1">
+      <Screen className="items-center justify-center">
         <ActivityIndicator color={colors.primary} size={40} />
-      </View>
+      </Screen>
     );
   }
 
   return (
     <ScrollView>
       <View className="mt-2 pb-10" style={{ paddingTop: safeArea.top }}>
-        <Text className="text-3xl font-display-bold px-4 mb-2">Movies App</Text>
+        <AppText variant="display" className="px-4 mb-2">
+          Movies App
+        </AppText>
 
         {/* Carrusel de imágenes */}
         <MainSlideShow movies={nowPlayingQuery.data ?? []} />

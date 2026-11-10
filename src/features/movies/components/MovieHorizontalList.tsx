@@ -1,11 +1,11 @@
 import MoviePoster from "@/features/movies/components/MoviePoster";
 import { Movie } from "@/features/movies/types/movie.interface";
+import { AppText } from "@/shared/components/AppText";
 import { useEffect, useRef } from "react";
 import {
   FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  Text,
   View,
 } from "react-native";
 
@@ -48,7 +48,11 @@ const MovieHorizontalList = ({
 
   return (
     <View className={`${className}`}>
-      {title && <Text className="text-3xl font-bold px-4 mb-2">{title}</Text>}
+      {title && (
+        <AppText variant="title" className="px-4 mb-2">
+          {title}
+        </AppText>
+      )}
 
       <FlatList
         horizontal

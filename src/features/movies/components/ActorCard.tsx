@@ -1,4 +1,5 @@
 import { Cast } from "@/features/movies/types/cast";
+import { AppText } from "@/shared/components/AppText";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { Image, Text, View } from "react-native";
@@ -32,7 +33,7 @@ export const ActorCard = ({ actor }: Props) => {
         >
           {actor.name}
         </Text>
-        <Text className="text-gray-600 text-xs">{actor.character}</Text>
+        <AppText variant="caption">{actor.character}</AppText>
       </View>
     </View>
   );
