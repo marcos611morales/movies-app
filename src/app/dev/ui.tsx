@@ -1,7 +1,9 @@
 import { AppText, type TextVariant } from "@/shared/components/AppText";
 import { Button } from "@/shared/components/Button";
+import { Chip } from "@/shared/components/Chip";
 import { IconButton } from "@/shared/components/IconButton";
 import { Screen } from "@/shared/components/Screen";
+import { SegmentedTabs } from "@/shared/components/SegmentedTabs";
 import { cn } from "@/shared/utils/cn";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
@@ -17,11 +19,39 @@ const textVariants: TextVariant[] = [
   "mono",
 ];
 
+const chipOptions = ["Todo", "Películas", "Series", "Personas"];
+
+const genreOptions = [
+  "Todo",
+  "Acción",
+  "Aventura",
+  "Animación",
+  "Comedia",
+  "Drama",
+  "Fantasía",
+  "Ciencia ficción",
+  "Documental",
+  "Terror",
+  "Suspenso",
+];
+
+type ProfileTab = "fav" | "watch" | "rated" | "lists";
+
+const profileTabs: { value: ProfileTab; label: string }[] = [
+  { value: "fav", label: "Favoritos" },
+  { value: "watch", label: "Por ver" },
+  { value: "rated", label: "Calificadas" },
+  { value: "lists", label: "Listas" },
+];
+
 export default function DevUIScreen() {
   const [pressCount, setPressCount] = useState(0);
   const handlePress = () => setPressCount((count) => count + 1);
   const [iconPressCount, setIconPressCount] = useState(0);
   const handleIconPress = () => setIconPressCount((count) => count + 1);
+  const [selectedChip, setSelectedChip] = useState("Todo");
+  const [selectedGenre, setSelectedGenre] = useState("Todo");
+  const [profileTab, setProfileTab] = useState<ProfileTab>("fav");
 
   return (
     <Screen>
@@ -108,6 +138,49 @@ export default function DevUIScreen() {
               </View>
             </View>
           ))}
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Chips</AppText>
+          <AppText variant="caption">En un View con flex-row y gap-2</AppText>
+          <View className="flex-row flex-wrap gap-2">
+            {chipOptions.map((label) => (
+              <Chip
+                key={label}
+                label={label}
+                selected={selectedChip === label}
+                onPress={() => setSelectedChip(label)}
+              />
+            ))}
+          </View>
+
+          <AppText variant="caption">Géneros en un ScrollView horizontal</AppText>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View className="flex-row gap-2">
+              {genreOptions.map((label) => (
+                <Chip
+                  key={label}
+                  label={label}
+                  selected={selectedGenre === label}
+                  onPress={() => setSelectedGenre(label)}
+                  className="shrink-0"
+                />
+              ))}
+            </View>
+          </ScrollView>
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Género seleccionado: {selectedGenre}
+          </AppText>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Pestañas segmentadas</AppText>
+          <SegmentedTabs<ProfileTab>
+            options={profileTabs}
+            value={profileTab}
+            onChange={setProfileTab}
+          />
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Selección: {profileTabs.find((tab) => tab.value === profileTab)?.label}
+          </AppText>
         </View>
       </ScrollView>
     </Screen>
