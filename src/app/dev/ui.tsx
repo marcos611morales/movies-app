@@ -1,6 +1,8 @@
 import { AppText, type TextVariant } from "@/shared/components/AppText";
 import { Button } from "@/shared/components/Button";
 import { Chip } from "@/shared/components/Chip";
+import { EmptyState } from "@/shared/components/EmptyState";
+import { ErrorState } from "@/shared/components/ErrorState";
 import { HorizontalList } from "@/shared/components/HorizontalList";
 import { IconButton } from "@/shared/components/IconButton";
 import { InfoTile } from "@/shared/components/InfoTile";
@@ -11,6 +13,7 @@ import { RatingRing } from "@/shared/components/RatingRing";
 import { Screen } from "@/shared/components/Screen";
 import { SectionHeader } from "@/shared/components/SectionHeader";
 import { SegmentedTabs } from "@/shared/components/SegmentedTabs";
+import { Skeleton } from "@/shared/components/Skeleton";
 import { TmdbImage } from "@/shared/components/TmdbImage";
 import {
   useThemeStore,
@@ -109,6 +112,10 @@ export default function DevUIScreen() {
   const [listEndCount, setListEndCount] = useState(0);
   const [sectionActionCount, setSectionActionCount] = useState(0);
   const [languageRowPressCount, setLanguageRowPressCount] = useState(0);
+  const [showSkeletons, setShowSkeletons] = useState(true);
+  const [emptyActionCount, setEmptyActionCount] = useState(0);
+  const [retryCount, setRetryCount] = useState(0);
+  const handleEmptyAction = () => setEmptyActionCount((count) => count + 1);
   const handleSectionAction = () => setSectionActionCount((count) => count + 1);
   const themePreference = useThemeStore((state) => state.preference);
   const setThemePreference = useThemeStore((state) => state.setPreference);
@@ -145,6 +152,41 @@ export default function DevUIScreen() {
             options={themeOptions}
             value={themePreference}
             onChange={setThemePreference}
+          />
+        </View>
+
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Esqueletos de carga</AppText>
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            {showSkeletons
+              ? "Cargando datos de prueba…"
+              : "Carga de prueba terminada."}
+          </AppText>
+          {showSkeletons && (
+            <>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <View className="flex-row gap-3">
+                  {[0, 1, 2].map((index) => (
+                    <View key={index} className="w-[124px] gap-2">
+                      <Skeleton className="w-[124px] aspect-[2/3] rounded-[14px]" />
+                      <Skeleton className="h-3.5 w-24 rounded" />
+                      <Skeleton className="h-3 w-12 rounded" />
+                    </View>
+                  ))}
+                </View>
+              </ScrollView>
+              <Skeleton className="h-14 w-14 rounded-full" />
+            </>
+          )}
+          <AppText variant="caption">
+            Para probar Reducir movimiento, reinicia Expo Go después de cambiar
+            el ajuste del simulador.
+          </AppText>
+          <Button
+            label={showSkeletons ? "Ocultar esqueletos" : "Mostrar esqueletos"}
+            variant="secondary"
+            size="md"
+            onPress={() => setShowSkeletons((show) => !show)}
           />
         </View>
 
@@ -438,6 +480,44 @@ export default function DevUIScreen() {
           </View>
           <AppText variant="caption" accessibilityLiveRegion="polite">
             Pulsaciones en Idioma: {languageRowPressCount}
+          </AppText>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Estados vacíos</AppText>
+          <EmptyState
+            icon="film-outline"
+            title="Sin resultados"
+            description="No encontramos películas que coincidan con tu búsqueda."
+            className="rounded-[18px] border border-border bg-surface"
+          />
+          <EmptyState
+            icon="film-outline"
+            title="Descubre nuevas películas"
+            description="Explora el catálogo para encontrar tu próxima película."
+            actionLabel="Explorar"
+            onActionPress={handleEmptyAction}
+            className="rounded-[18px] border border-border bg-surface"
+          />
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Acciones de estados vacíos: {emptyActionCount}
+          </AppText>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Estados de error</AppText>
+          <ErrorState
+            title="No pudimos cargar las películas"
+            description="Comprueba tu conexión e inténtalo de nuevo."
+            retryLabel="Reintentar"
+            onRetry={() => setRetryCount((count) => count + 1)}
+            className="rounded-[18px] border border-border bg-surface"
+          />
+          <ErrorState
+            title="Servicio no disponible"
+            retryLabel="Reintentar"
+            className="rounded-[18px] border border-border bg-surface"
+          />
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Reintentos: {retryCount}
           </AppText>
         </View>
       </ScrollView>
