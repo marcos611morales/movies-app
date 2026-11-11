@@ -2,6 +2,9 @@ import { AppText, type TextVariant } from "@/shared/components/AppText";
 import { Button } from "@/shared/components/Button";
 import { Chip } from "@/shared/components/Chip";
 import { IconButton } from "@/shared/components/IconButton";
+import { PosterCard } from "@/shared/components/PosterCard";
+import { RatingBadge } from "@/shared/components/RatingBadge";
+import { RatingRing } from "@/shared/components/RatingRing";
 import { Screen } from "@/shared/components/Screen";
 import { SegmentedTabs } from "@/shared/components/SegmentedTabs";
 import { TmdbImage } from "@/shared/components/TmdbImage";
@@ -52,6 +55,27 @@ const themeOptions: { value: ThemePreference; label: string }[] = [
   { value: "dark", label: "Oscuro" },
 ];
 
+const ratingExamples = [8.4, 6.2, 3.9, 0];
+
+const posterExamples = [
+  {
+    posterPath: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    title: "The Dark Knight",
+    year: 2008,
+    vote: 9,
+  },
+  {
+    posterPath: null,
+    title: "Película sin póster con un título muy largo",
+    year: 2026,
+    vote: 0,
+  },
+  {
+    posterPath: null,
+    title: "Sin año ni calificación",
+  },
+];
+
 export default function DevUIScreen() {
   const [pressCount, setPressCount] = useState(0);
   const handlePress = () => setPressCount((count) => count + 1);
@@ -60,6 +84,7 @@ export default function DevUIScreen() {
   const [selectedChip, setSelectedChip] = useState("Todo");
   const [selectedGenre, setSelectedGenre] = useState("Todo");
   const [profileTab, setProfileTab] = useState<ProfileTab>("fav");
+  const [lastPosterTitle, setLastPosterTitle] = useState<string | null>(null);
   const themePreference = useThemeStore((state) => state.preference);
   const setThemePreference = useThemeStore((state) => state.setPreference);
 
@@ -238,6 +263,79 @@ export default function DevUIScreen() {
               />
               <AppText variant="caption">Persona sin foto</AppText>
             </View>
+          </View>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Badges de calificación</AppText>
+          {(["overlay", "inline"] as const).map((variant) => (
+            <View key={variant} className="gap-3">
+              {(["md", "sm"] as const).map((size) => (
+                <View key={size} className="gap-2">
+                  <AppText variant="overline">{variant} · {size}</AppText>
+                  <View
+                    className={cn(
+                      "flex-row items-center gap-4",
+                      variant === "overlay" && "rounded-xl bg-primary p-4",
+                    )}
+                  >
+                    {ratingExamples.map((vote) => (
+                      <RatingBadge
+                        key={vote}
+                        vote={vote}
+                        variant={variant}
+                        size={size}
+                      />
+                    ))}
+                  </View>
+                </View>
+              ))}
+            </View>
+          ))}
+          <AppText variant="caption">
+            Sin votos: no debe aparecer ningún badge.
+          </AppText>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Anillos de calificación</AppText>
+          <View className="flex-row flex-wrap gap-4">
+            {ratingExamples.map((vote) => (
+              <View key={vote} className="items-center gap-2">
+                <RatingRing vote={vote} />
+                <AppText variant="caption">
+                  {vote <= 0 ? `Sin votos (${vote})` : `Nota ${vote}`}
+                </AppText>
+              </View>
+            ))}
+          </View>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Tarjetas de póster</AppText>
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Última tarjeta: {lastPosterTitle ?? "Ninguna"}
+          </AppText>
+          <AppText variant="overline">md · ancho de 124 px</AppText>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View className="flex-row gap-3">
+              {posterExamples.map((poster) => (
+                <PosterCard
+                  key={poster.title}
+                  {...poster}
+                  onPress={() => setLastPosterTitle(poster.title)}
+                />
+              ))}
+            </View>
+          </ScrollView>
+          <AppText variant="overline">sm · grid de tres columnas</AppText>
+          <View className="flex-row gap-3">
+            {posterExamples.map((poster) => (
+              <PosterCard
+                key={poster.title}
+                {...poster}
+                size="sm"
+                className="flex-1"
+                onPress={() => setLastPosterTitle(poster.title)}
+              />
+            ))}
           </View>
         </View>
       </ScrollView>

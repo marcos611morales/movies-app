@@ -42,6 +42,12 @@ export const Colors = {
 
 export type ThemeColors = (typeof Colors)[keyof typeof Colors];
 
+export type RatingLevel = "high" | "mid" | "low";
+
+// vote_average (0–10) → nivel
+export const ratingLevel = (vote: number): RatingLevel =>
+  vote >= 7 ? "high" : vote >= 5 ? "mid" : "low";
+
 // vote_average (0–10) → color
 export const ratingColor = (vote: number, c: ThemeColors) =>
-  vote >= 7 ? c.rating.high : vote >= 5 ? c.rating.mid : c.rating.low;
+  c.rating[ratingLevel(vote)];
