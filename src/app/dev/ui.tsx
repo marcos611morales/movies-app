@@ -1,14 +1,21 @@
 import { AppText, type TextVariant } from "@/shared/components/AppText";
 import { Button } from "@/shared/components/Button";
 import { Chip } from "@/shared/components/Chip";
+import { HorizontalList } from "@/shared/components/HorizontalList";
 import { IconButton } from "@/shared/components/IconButton";
+import { InfoTile } from "@/shared/components/InfoTile";
+import { ListRow } from "@/shared/components/ListRow";
 import { PosterCard } from "@/shared/components/PosterCard";
 import { RatingBadge } from "@/shared/components/RatingBadge";
 import { RatingRing } from "@/shared/components/RatingRing";
 import { Screen } from "@/shared/components/Screen";
+import { SectionHeader } from "@/shared/components/SectionHeader";
 import { SegmentedTabs } from "@/shared/components/SegmentedTabs";
 import { TmdbImage } from "@/shared/components/TmdbImage";
-import { useThemeStore, type ThemePreference } from "@/shared/theme/theme-store";
+import {
+  useThemeStore,
+  type ThemePreference,
+} from "@/shared/theme/theme-store";
 import { cn } from "@/shared/utils/cn";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
@@ -57,6 +64,15 @@ const themeOptions: { value: ThemePreference; label: string }[] = [
 
 const ratingExamples = [8.4, 6.2, 3.9, 0];
 
+const infoTileExamples = [
+  { label: "Estreno", value: "14 mar 2025" },
+  { label: "Duración", value: "2 h 14 min" },
+  { label: "Presupuesto", value: "$18,000,000" },
+  { label: "Recaudación", value: "$64,500,000" },
+  { label: "Idioma original", value: "Portugués" },
+  { label: "Estado", value: "Estrenada" },
+];
+
 const posterExamples = [
   {
     posterPath: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
@@ -76,6 +92,11 @@ const posterExamples = [
   },
 ];
 
+const horizontalPosterExamples = Array.from(
+  { length: 10 },
+  (_, index) => posterExamples[index % posterExamples.length],
+);
+
 export default function DevUIScreen() {
   const [pressCount, setPressCount] = useState(0);
   const handlePress = () => setPressCount((count) => count + 1);
@@ -85,8 +106,33 @@ export default function DevUIScreen() {
   const [selectedGenre, setSelectedGenre] = useState("Todo");
   const [profileTab, setProfileTab] = useState<ProfileTab>("fav");
   const [lastPosterTitle, setLastPosterTitle] = useState<string | null>(null);
+  const [listEndCount, setListEndCount] = useState(0);
+  const [sectionActionCount, setSectionActionCount] = useState(0);
+  const [languageRowPressCount, setLanguageRowPressCount] = useState(0);
+  const handleSectionAction = () => setSectionActionCount((count) => count + 1);
   const themePreference = useThemeStore((state) => state.preference);
   const setThemePreference = useThemeStore((state) => state.setPreference);
+
+  const listRowExamples = [
+    {
+      label: "Idioma",
+      value: "Español",
+      onPress: () => setLanguageRowPressCount((count) => count + 1),
+    },
+    { label: "Región", value: "México" },
+    {
+      label: "Tema",
+      right: (
+        <View className="w-[220px]">
+          <SegmentedTabs<ThemePreference>
+            options={themeOptions}
+            value={themePreference}
+            onChange={setThemePreference}
+          />
+        </View>
+      ),
+    },
+  ];
 
   return (
     <Screen>
@@ -197,7 +243,9 @@ export default function DevUIScreen() {
             ))}
           </View>
 
-          <AppText variant="caption">Géneros en un ScrollView horizontal</AppText>
+          <AppText variant="caption">
+            Géneros en un ScrollView horizontal
+          </AppText>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View className="flex-row gap-2">
               {genreOptions.map((label) => (
@@ -223,7 +271,8 @@ export default function DevUIScreen() {
             onChange={setProfileTab}
           />
           <AppText variant="caption" accessibilityLiveRegion="polite">
-            Selección: {profileTabs.find((tab) => tab.value === profileTab)?.label}
+            Selección:{" "}
+            {profileTabs.find((tab) => tab.value === profileTab)?.label}
           </AppText>
         </View>
         <View className="mt-6 gap-4">
@@ -271,7 +320,9 @@ export default function DevUIScreen() {
             <View key={variant} className="gap-3">
               {(["md", "sm"] as const).map((size) => (
                 <View key={size} className="gap-2">
-                  <AppText variant="overline">{variant} · {size}</AppText>
+                  <AppText variant="overline">
+                    {variant} · {size}
+                  </AppText>
                   <View
                     className={cn(
                       "flex-row items-center gap-4",
@@ -314,17 +365,23 @@ export default function DevUIScreen() {
             Última tarjeta: {lastPosterTitle ?? "Ninguna"}
           </AppText>
           <AppText variant="overline">md · ancho de 124 px</AppText>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View className="flex-row gap-3">
-              {posterExamples.map((poster) => (
+          <View className="-mx-4 gap-3.5">
+            <SectionHeader title="Películas de prueba" className="px-6" />
+            <HorizontalList
+              data={horizontalPosterExamples}
+              keyExtractor={(poster, index) => `${poster.title}-${index}`}
+              onEndReached={() => setListEndCount((count) => count + 1)}
+              renderItem={({ item }) => (
                 <PosterCard
-                  key={poster.title}
-                  {...poster}
-                  onPress={() => setLastPosterTitle(poster.title)}
+                  {...item}
+                  onPress={() => setLastPosterTitle(item.title)}
                 />
-              ))}
-            </View>
-          </ScrollView>
+              )}
+            />
+          </View>
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            fin alcanzado ×{listEndCount}
+          </AppText>
           <AppText variant="overline">sm · grid de tres columnas</AppText>
           <View className="flex-row gap-3">
             {posterExamples.map((poster) => (
@@ -337,6 +394,51 @@ export default function DevUIScreen() {
               />
             ))}
           </View>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Encabezados de sección</AppText>
+          <SectionHeader
+            title="Populares"
+            actionLabel="Ver todo"
+            onActionPress={handleSectionAction}
+          />
+          <SectionHeader
+            title="Un título de sección muy largo que debe dejar visible la acción"
+            actionLabel="Ver todo"
+            onActionPress={handleSectionAction}
+          />
+          <SectionHeader title="Dónde ver" note="Datos de JustWatch" />
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Acciones pulsadas: {sectionActionCount}
+          </AppText>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Fichas de información</AppText>
+          <View className="flex-row flex-wrap gap-2.5">
+            {infoTileExamples.map((tile) => (
+              <InfoTile
+                key={tile.label}
+                label={tile.label}
+                value={tile.value}
+                className="grow basis-[40%]"
+              />
+            ))}
+          </View>
+        </View>
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Filas de lista</AppText>
+          <View className="rounded-[18px] bg-surface border border-border overflow-hidden">
+            {listRowExamples.map((row, index) => (
+              <ListRow
+                key={row.label}
+                {...row}
+                divider={index < listRowExamples.length - 1}
+              />
+            ))}
+          </View>
+          <AppText variant="caption" accessibilityLiveRegion="polite">
+            Pulsaciones en Idioma: {languageRowPressCount}
+          </AppText>
         </View>
       </ScrollView>
     </Screen>
