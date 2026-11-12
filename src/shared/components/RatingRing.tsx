@@ -1,4 +1,5 @@
 import { AppText } from "@/shared/components/AppText";
+import { useT } from "@/shared/i18n/useT";
 import { ratingLevel } from "@/shared/theme/colors";
 import { cn } from "@/shared/utils/cn";
 import { View } from "react-native";
@@ -26,12 +27,13 @@ export function RatingRing({ vote, className }: RatingRingProps) {
   const unrated = vote <= 0;
   const level = ratingLevel(vote);
   const label = unrated ? "–" : vote.toFixed(1);
+  const t = useT();
 
   return (
     <View
       accessible
       accessibilityLabel={
-        unrated ? "Sin calificación" : `Calificación ${label} de 10`
+        unrated ? t("rating.none") : t("rating.a11yLabel", { value: label })
       }
       className={cn(
         base,

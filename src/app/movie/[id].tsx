@@ -4,6 +4,7 @@ import MovieHeader from "@/features/movies/components/MovieHeader";
 import { useMovie } from "@/features/movies/hooks/useMovie";
 import { AppText } from "@/shared/components/AppText";
 import { Screen } from "@/shared/components/Screen";
+import { useT } from "@/shared/i18n/useT";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, ScrollView } from "react-native";
@@ -12,12 +13,13 @@ const MovieScreen = () => {
   const { id } = useLocalSearchParams();
   const { movieQuery, castQuery } = useMovie(+id);
   const colors = useThemeColors();
+  const t = useT();
 
   if (movieQuery.isLoading || !movieQuery.data) {
     return (
       <Screen className="items-center justify-center">
         <AppText variant="caption" className="mb-4">
-          Espere por favor
+          {t("common.loading")}
         </AppText>
         <ActivityIndicator color={colors.primary} size={30} />
       </Screen>

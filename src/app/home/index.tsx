@@ -3,6 +3,7 @@ import MovieHorizontalList from "@/features/movies/components/MovieHorizontalLis
 import { useMovies } from "@/features/movies/hooks/useMovies";
 import { AppText } from "@/shared/components/AppText";
 import { Screen } from "@/shared/components/Screen";
+import { useT } from "@/shared/i18n/useT";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
 import { Link } from "expo-router";
 import { ActivityIndicator, ScrollView, View } from "react-native";
@@ -13,6 +14,8 @@ const HomeScreen = () => {
   const colors = useThemeColors();
   const { nowPlayingQuery, popularQuery, topRatedQuery, upcomingQuery } =
     useMovies();
+
+  const t = useT();
 
   // // TMDB puede repetir películas entre páginas; se eliminan duplicados por id
   // const topRatedMovies = [
@@ -33,7 +36,7 @@ const HomeScreen = () => {
     <ScrollView>
       <View className="mt-2 pb-10" style={{ paddingTop: safeArea.top }}>
         <AppText variant="display" className="px-4 mb-2">
-          Movies App
+          {t("common.appName")}
         </AppText>
 
         {__DEV__ && (
@@ -47,14 +50,14 @@ const HomeScreen = () => {
 
         {/* Popular */}
         <MovieHorizontalList
-          title="Populares"
+          title={t("home.sections.popular")}
           movies={popularQuery.data ?? []}
           className="mb-5"
         />
 
         {/* Top Rater */}
         <MovieHorizontalList
-          title="Mejor calificadas"
+          title={t("home.sections.topRated")}
           // movies={topRatedMovies}
           movies={topRatedQuery.data?.pages.flat() ?? []}
           className="mb-5"
@@ -63,7 +66,7 @@ const HomeScreen = () => {
 
         {/* Upcoming */}
         <MovieHorizontalList
-          title="Proximamente"
+          title={t("home.sections.upcoming")}
           movies={upcomingQuery.data ?? []}
         />
       </View>
