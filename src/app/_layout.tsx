@@ -24,6 +24,7 @@ import {
   JetBrainsMono_500Medium,
 } from "@expo-google-fonts/jetbrains-mono";
 
+import { useSettingsStore } from "@/features/settings/store/settings-store";
 import { queryClient } from "@/shared/api/query-client";
 import { useThemeStore } from "@/shared/theme/theme-store";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
@@ -31,8 +32,12 @@ import { useThemeColors } from "@/shared/theme/useThemeColors";
 SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
+  // Theme
   const preference = useThemeStore((s) => s.preference);
-  const hasHydrated = useThemeStore((s) => s.hasHydrated);
+  const themeHydrated = useThemeStore((s) => s.hasHydrated);
+
+  // Settings
+  const settingsHydrated = useSettingsStore((state) => state.hasHydrated);
 
   const { colorScheme: activeColorScheme } = useColorScheme();
   const colors = useThemeColors();
@@ -47,7 +52,7 @@ const RootLayout = () => {
     JetBrainsMono_500Medium,
   });
 
-  const ready = (loaded || !!error) && hasHydrated;
+  const ready = (loaded || !!error) && themeHydrated && settingsHydrated;
 
   useEffect(() => {
     colorScheme.set(preference);
