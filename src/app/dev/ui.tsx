@@ -18,6 +18,7 @@ import { Skeleton } from "@/shared/components/Skeleton";
 import { TmdbImage } from "@/shared/components/TmdbImage";
 import type { LanguagePreference } from "@/shared/i18n/languages";
 import { useAppLanguage } from "@/shared/i18n/useAppLanguage";
+import { useFormat } from "@/shared/i18n/useFormat";
 import { useT } from "@/shared/i18n/useT";
 import {
   useThemeStore,
@@ -113,6 +114,7 @@ const horizontalPosterExamples = Array.from(
 
 export default function DevUIScreen() {
   const t = useT();
+  const format = useFormat();
   const [pressCount, setPressCount] = useState(0);
   const handlePress = () => setPressCount((count) => count + 1);
   const [iconPressCount, setIconPressCount] = useState(0);
@@ -188,8 +190,13 @@ export default function DevUIScreen() {
           <AppText>{t("profile.titleCount", { count: 1 })}</AppText>
           <AppText>{t("profile.titleCount", { count: 3 })}</AppText>
           <AppText variant="mono">
-            Intl.PluralRules: {typeof Intl.PluralRules}
+            Fecha: {format.date(new Date(2025, 2, 14))}
           </AppText>
+          <AppText variant="mono">
+            Presupuesto: {format.currency(18000000)}
+          </AppText>
+          <AppText variant="mono">Cantidad: {format.number(3214)}</AppText>
+          <AppText variant="mono">Calificación: {format.rating(8.4)}</AppText>
         </View>
 
         <View className="mt-6 gap-4">

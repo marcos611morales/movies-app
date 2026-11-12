@@ -1,4 +1,5 @@
 import { AppText } from "@/shared/components/AppText";
+import { useFormat } from "@/shared/i18n/useFormat";
 import { useT } from "@/shared/i18n/useT";
 import { ratingLevel } from "@/shared/theme/colors";
 import { cn } from "@/shared/utils/cn";
@@ -24,9 +25,10 @@ const levelText = {
 };
 
 export function RatingRing({ vote, className }: RatingRingProps) {
+  const format = useFormat();
   const unrated = vote <= 0;
   const level = ratingLevel(vote);
-  const label = unrated ? "–" : vote.toFixed(1);
+  const label = unrated ? "–" : format.rating(vote);
   const t = useT();
 
   return (

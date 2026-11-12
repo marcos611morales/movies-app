@@ -1,4 +1,5 @@
 import { AppText } from "@/shared/components/AppText";
+import { useFormat } from "@/shared/i18n/useFormat";
 import { ratingLevel } from "@/shared/theme/colors";
 import { cn } from "@/shared/utils/cn";
 import { View } from "react-native";
@@ -37,6 +38,7 @@ export function RatingBadge({
   size = "md",
   className,
 }: RatingBadgeProps) {
+  const format = useFormat();
   if (vote <= 0) return null;
 
   return (
@@ -54,7 +56,7 @@ export function RatingBadge({
           levelText[ratingLevel(vote)],
         )}
       >
-        ★ {vote.toFixed(1)}
+        ★ {format.rating(vote)}
       </AppText>
     </View>
   );
