@@ -1,3 +1,4 @@
+import { useSettingsStore } from "@/features/settings/store/settings-store";
 import { AppText, type TextVariant } from "@/shared/components/AppText";
 import { Button } from "@/shared/components/Button";
 import { Chip } from "@/shared/components/Chip";
@@ -15,11 +16,15 @@ import { SectionHeader } from "@/shared/components/SectionHeader";
 import { SegmentedTabs } from "@/shared/components/SegmentedTabs";
 import { Skeleton } from "@/shared/components/Skeleton";
 import { TmdbImage } from "@/shared/components/TmdbImage";
+import type { LanguagePreference } from "@/shared/i18n/languages";
+import { useAppLanguage } from "@/shared/i18n/useAppLanguage";
+import { useT } from "@/shared/i18n/useT";
 import {
   useThemeStore,
   type ThemePreference,
 } from "@/shared/theme/theme-store";
 import { cn } from "@/shared/utils/cn";
+import { useLocales } from "expo-localization";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -65,6 +70,12 @@ const themeOptions: { value: ThemePreference; label: string }[] = [
   { value: "dark", label: "Oscuro" },
 ];
 
+const languageOptions: { value: LanguagePreference; label: string }[] = [
+  { value: "system", label: "Sistema" },
+  { value: "es-MX", label: "Español" },
+  { value: "en-US", label: "English" },
+];
+
 const ratingExamples = [8.4, 6.2, 3.9, 0];
 
 const infoTileExamples = [
@@ -101,6 +112,7 @@ const horizontalPosterExamples = Array.from(
 );
 
 export default function DevUIScreen() {
+  const t = useT();
   const [pressCount, setPressCount] = useState(0);
   const handlePress = () => setPressCount((count) => count + 1);
   const [iconPressCount, setIconPressCount] = useState(0);
@@ -119,6 +131,10 @@ export default function DevUIScreen() {
   const handleSectionAction = () => setSectionActionCount((count) => count + 1);
   const themePreference = useThemeStore((state) => state.preference);
   const setThemePreference = useThemeStore((state) => state.setPreference);
+  const languagePreference = useSettingsStore((state) => state.language);
+  const setLanguage = useSettingsStore((state) => state.setLanguage);
+  const appLanguage = useAppLanguage();
+  const locales = useLocales();
 
   const listRowExamples = [
     {
@@ -153,6 +169,27 @@ export default function DevUIScreen() {
             value={themePreference}
             onChange={setThemePreference}
           />
+        </View>
+
+        <View className="mt-6 gap-4">
+          <AppText variant="title">Idioma</AppText>
+          <SegmentedTabs<LanguagePreference>
+            options={languageOptions}
+            value={languagePreference}
+            onChange={setLanguage}
+          />
+          <AppText variant="mono">preferencia: {languagePreference}</AppText>
+          <AppText variant="mono">efectivo: {appLanguage}</AppText>
+          <AppText variant="mono">
+            teléfono: {locales.map((locale) => locale.languageTag).join(", ")}
+          </AppText>
+          <AppText>{t("common.seeAll")}</AppText>
+          <AppText>{t("home.greeting", { name: "Marcos" })}</AppText>
+          <AppText>{t("profile.titleCount", { count: 1 })}</AppText>
+          <AppText>{t("profile.titleCount", { count: 3 })}</AppText>
+          <AppText variant="mono">
+            Intl.PluralRules: {typeof Intl.PluralRules}
+          </AppText>
         </View>
 
         <View className="mt-6 gap-4">

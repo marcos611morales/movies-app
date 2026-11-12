@@ -26,6 +26,8 @@ import {
 
 import { useSettingsStore } from "@/features/settings/store/settings-store";
 import { queryClient } from "@/shared/api/query-client";
+import i18n from "@/shared/i18n/i18n";
+import { useAppLanguage } from "@/shared/i18n/useAppLanguage";
 import { useThemeStore } from "@/shared/theme/theme-store";
 import { useThemeColors } from "@/shared/theme/useThemeColors";
 
@@ -38,6 +40,9 @@ const RootLayout = () => {
 
   // Settings
   const settingsHydrated = useSettingsStore((state) => state.hasHydrated);
+
+  // Language
+  const appLanguage = useAppLanguage();
 
   const { colorScheme: activeColorScheme } = useColorScheme();
   const colors = useThemeColors();
@@ -57,6 +62,10 @@ const RootLayout = () => {
   useEffect(() => {
     colorScheme.set(preference);
   }, [preference]);
+
+  useEffect(() => {
+    i18n.changeLanguage(appLanguage);
+  }, [appLanguage]);
 
   useEffect(() => {
     if (ready) SplashScreen.hide();
