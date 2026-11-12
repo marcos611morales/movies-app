@@ -81,7 +81,17 @@ const RootLayout = () => {
             headerShown: false,
             contentStyle: { backgroundColor: colors.background },
           }}
-        />
+        >
+          <Stack.Screen
+            name="settings/language"
+            options={{
+              presentation: "formSheet",
+              sheetAllowedDetents: "fitToContents",
+              sheetGrabberVisible: true,
+              sheetCornerRadius: 28,
+            }}
+          />
+        </Stack>
 
         <StatusBar style={activeColorScheme === "light" ? "dark" : "light"} />
       </QueryClientProvider>

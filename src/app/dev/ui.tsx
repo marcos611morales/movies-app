@@ -26,6 +26,7 @@ import {
 } from "@/shared/theme/theme-store";
 import { cn } from "@/shared/utils/cn";
 import { useLocales } from "expo-localization";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -137,6 +138,7 @@ export default function DevUIScreen() {
   const setLanguage = useSettingsStore((state) => state.setLanguage);
   const appLanguage = useAppLanguage();
   const locales = useLocales();
+  const router = useRouter();
 
   const listRowExamples = [
     {
@@ -197,6 +199,13 @@ export default function DevUIScreen() {
           </AppText>
           <AppText variant="mono">Cantidad: {format.number(3214)}</AppText>
           <AppText variant="mono">Calificación: {format.rating(8.4)}</AppText>
+
+          <Button
+            variant="secondary"
+            size="md"
+            label="Abrir modal de idioma"
+            onPress={() => router.push("/settings/language")}
+          />
         </View>
 
         <View className="mt-6 gap-4">

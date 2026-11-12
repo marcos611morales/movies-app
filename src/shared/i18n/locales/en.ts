@@ -10,7 +10,7 @@ export const en: Translations = {
   home: {
     greeting: "Hi, {{name}}",
     sections: {
-      nowPlaying: "Now showing",
+      nowPlaying: "Now playing",
       popular: "Popular",
       topRated: "Top Rated",
       upcoming: "Coming Soon",
@@ -27,5 +27,13 @@ export const en: Translations = {
   profile: {
     titleCount_one: "{{count}} title",
     titleCount_other: "{{count}} titles",
+  },
+  language: {
+    title: "Language",
+    description:
+      "Changes the app text and the language of titles, overviews and trailers.",
+    note: "Region follows the language: it sets now playing, upcoming releases and where each title is streaming (Where to watch).",
+    close: "Close",
+    done: "Done",
   },
 };
